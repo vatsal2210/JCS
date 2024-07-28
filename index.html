@@ -9,6 +9,26 @@
         content="Jain Community Services of Canada (JCS) provides voluntary services to Canadian Jains and newcomers since 1985. Offering support in accommodation, job search, healthcare, and more.">
     <meta name="keywords"
         content="Jain, Canada, Community Services, Immigrants, Support, Healthcare, Accommodation, Job Support">
+
+    <link rel="canonical" href="https://jcscanada.org">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jain Community Services of Canada">
+    <meta property="og:description"
+        content="Providing voluntary services to Canadian Jains and newcomers since 1985. Offering support in accommodation, job search, healthcare, and more.">
+    <meta property="og:image" content="assets/JCS256x256.jpg">
+    <meta property="og:url" content="https://jcscanada.org">
+    <meta property="og:site_name" content="Jain Community Services of Canada">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jain Community Services of Canada">
+    <meta name="twitter:description"
+        content="Providing voluntary services to Canadian Jains and newcomers since 1985. Offering support in accommodation, job search, healthcare, and more.">
+    <meta name="twitter:image" content="assets/JCS256x256.jpg">
+    <meta name="twitter:url" content="https://jcscanada.org">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
@@ -309,27 +329,44 @@
     <section id="contact" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4">Contact Us</h2>
-            <p class="text-center lead">We are here to help and support you. Reach out to us for any assistance or
+            <p class="text-center lead mb-5">We are here to help and support you. Reach out to us for any assistance or
                 inquiries.</p>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <h3>Get in Touch</h3>
-                    <p>Feel free to contact us via email for any queries or support.</p>
-                    <ul class="list-unstyled">
-                        <li><i class="fas fa-envelope"></i> <strong>Email:</strong> <a
-                                href="mailto:manharsheth@rogers.com">manharsheth@rogers.com</a></li>
-                    </ul>
-                    <p>Services provided by:</p>
-                    <ul class="list-unstyled">
-                        <li>Manhar Sheth</li>
-                        <li>Apurva Talsania</li>
-                        <li>Dr. Niketa Gandhi</li>
-                        <li>Prafula Shah</li>
-                    </ul>
-                    <div class="text-center mt-4">
-                        <a href="https://wa.me/14168959847" class="btn btn-success" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Chat with us on WhatsApp
-                        </a>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Get in Touch</h3>
+                            <p>Feel free to contact us via email for any queries or support.</p>
+
+                            <i class="fas fa-envelope"></i> <strong>Email:</strong> <a
+                                href="mailto:manharsheth@rogers.com">manharsheth@rogers.com</a>
+
+                            <p class="mt-4">Services provided by:</p>
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.linkedin.com/in/manhar-sheth-1745a748/" target="_blank">Manhar
+                                        Sheth</a>
+                                </li>
+                                <li><a href="https://www.linkedin.com/in/apurvatalsania/" target="_blank">Apurva
+                                        Talsania</a></li>
+                                <li><a href="https://www.linkedin.com/in/niketagandhi/" target="_blank">Dr. Niketa
+                                        Gandhi</a></li>
+                                <li>Prafula Shah </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Follow Us</h3>
+                            <a href="https://wa.me/14168959847" class="btn btn-success mb-3" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Send message on WhatsApp
+                            </a>
+                            <a href="https://www.linkedin.com/groups/8151780/" class="btn btn-primary mb-3"
+                                target="_blank">
+                                <i class="fab fa-linkedin"></i> Join our LinkedIn Group
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -338,7 +375,29 @@
 
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2024 Jain Community Services of Canada. All rights reserved.</p>
+
+        <p>Created by <a href="https://www.linkedin.com/in/vatsalnshah/" target="_blank">Vatsal Shah</a></p>
     </footer>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Jain Community Services of Canada",
+            "url": "https://jcscanada.org",
+            "logo": "https://jcscanada.org/assets/JCS256x256.jpg",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+1-416-895-9847",
+                "contactType": "Customer Service"
+            },
+            "sameAs": [
+                "https://www.linkedin.com/groups/8151780/"
+            ]
+        }
+        </script>
+
 
     <script src="https://kit.fontawesome.com/01020c8cb3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
