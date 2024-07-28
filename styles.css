@@ -8,26 +8,9 @@ body {
     font-weight: bold;
 }
 
-#home {
-    background-color: #f8f9fa;
-}
-
-#home img {
-    max-width: 100%;
-    height: auto;
-}
-
 #services .card {
     transition: transform 0.3s;
     height: 100%;
-}
-
-#services .card:hover {
-    transform: translateY(-5px);
-}
-
-#services .card-title {
-    font-size: 1rem;
 }
 
 #volunteer .card {
@@ -43,12 +26,18 @@ body {
     margin: 1rem auto;
 }
 
-#contact {
-    background-color: #e9ecef;
+#contact .list-unstyled li i {
+    margin-right: 10px;
+    color: #007bff;
 }
 
-footer {
-    margin-top: 2rem;
+#contact .btn-success {
+    background-color: #25d366;
+    border-color: #25d366;
+}
+
+#contact .btn-success i {
+    margin-right: 10px;
 }
 
 /* Responsive adjustments */
