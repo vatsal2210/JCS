@@ -703,7 +703,7 @@ footer a:hover {
 }
 
 #eventImagesCarousel .carousel-caption {
-    background: rgba(0, 0, 0, 0.6);
+    /* background: rgba(0, 0, 0, 0.6); */
     border-radius: 8px;
     padding: 20px;
     max-width: 80%;
@@ -712,13 +712,13 @@ footer a:hover {
 }
 
 #eventImagesCarousel .carousel-caption h3 {
-    color: #fff;
+    /* color: #fff; */
     font-size: 1.8rem;
     margin-bottom: 1rem;
 }
 
 #eventImagesCarousel .carousel-caption p {
-    color: #fff;
+    /* color: #fff; */
     font-size: 1.1rem;
     margin-bottom: 1rem;
 }
