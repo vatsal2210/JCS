@@ -1,0 +1,59 @@
+## Core Framework
+- **Next.js**: v15.3.1 - React framework with file-based routing, API routes, and server components
+- **React**: v19.1.0 - UI library with hooks and functional components
+- **TypeScript**: v5.8.3 - Static typing for JavaScript
+
+## Styling & UI
+- **Tailwind CSS**: v4.1.4 - Utility-first CSS framework
+- **shadcn/ui**: Component library based on Radix UI primitives
+- **Radix UI**: Collection of accessible UI primitives
+- **tailwind-merge**: v3.2.0 - For merging Tailwind CSS classes
+- **tailwindcss-animate**: v1.0.7 - Animation utilities for Tailwind
+- **Lucide React**: v0.503.0 - Icon library
+- **Embla Carousel**: v8.6.0 - Carousel/slider component
+- **Sonner**: v2.0.3 - Toast notifications
+
+## Theming
+- **next-themes**: v0.4.6 - Theme management for Next.js (dark/light mode)
+  - Theme toggling available via `useTheme()` hook
+  - Dark mode classes use `dark:` prefix in Tailwind
+
+## Data Management
+- **TanStack React Query**: v5.74.4 - Data fetching, caching, and state management
+- **Zod**: v3.24.3 - Schema validation
+- **Axios**: v1.9.0 - HTTP client for API requests
+
+## Forms & Input
+- **React Hook Form**: v7.56.1 - Form state management and validation
+- **@hookform/resolvers**: v5.0.1 - Form validation integration
+- **input-otp**: v1.4.2 - One-time password input
+
+## Utilities
+- **clsx**: v2.1.1 - Utility for constructing className strings
+- **slugify**: v1.6.6 - URL slug generation
+- **class-variance-authority**: v0.7.1 - Type-safe UI variants
+
+## Development Tools
+- **ESLint**: v9.25.1 - Code linting
+- **Tailwind plugins**:
+  - @tailwindcss/forms: v0.5.10
+  - @tailwindcss/typography: v0.5.16
+  - @tailwindcss/aspect-ratio: v0.4.2
+  - @tailwindcss/postcss: v4.1.4
+
+## Dark Mode Implementation
+- Tailwind configured with `darkMode: "class"`
+- Dark mode classes use `dark:` prefix in component styles
+- Theme toggle using `useTheme()` hook from next-themes
+- Color variables defined in globals.css for both light and dark themes
+
+## Best Practices
+1. Use Tailwind's utility classes for styling
+2. Support both light and dark modes for all components
+3. Use shadcn/ui components when available 
+4. Use React Query for data fetching and state management
+5. Implement form validation with React Hook Form and Zod
+6. Use Typescript for type safety
+7. Follow file-based routing pattern from Next.js
+8. Use semantic HTML elements for better accessibility
+9. Use Tailwind's responsive prefixes for responsive design

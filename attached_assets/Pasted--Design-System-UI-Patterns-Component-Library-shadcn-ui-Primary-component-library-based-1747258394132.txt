@@ -1,0 +1,202 @@
+# Design System & UI Patterns
+
+## Component Library
+- **shadcn/ui**: Primary component library based on Radix UI
+  - Used for buttons, cards, dialogs, forms, and other UI elements
+  - Components can be found in `src/components/ui`
+- **Radix UI**: Accessible UI primitives
+- **Lucide React**: Icon library used throughout the application
+
+## Styling
+- **Tailwind CSS**: Utility-first CSS framework for styling
+  - Follow existing class patterns when adding new components
+  - Use `tailwind-merge` for conditional classes
+  - Use `clsx` for complex conditional class logic
+- **Class Variance Authority (cva)**: For component variants
+  - Used to define variants of components (primary, secondary, etc.)
+- **tailwindcss-animate**: For animation utilities
+
+## Theme & Branding
+- **Dark/Light Mode**: Support both themes using `next-themes`
+  - Use `dark:` prefix for dark mode specific styles
+  - Theme toggling available via `useTheme()` hook
+- **Color System**: Color variables defined in globals.css
+  - Primary: Brand colors
+  - Secondary: Supporting colors
+  - Accent: Highlighting elements
+  - Neutral: Text and backgrounds
+
+## Layout Patterns
+- **Responsive Design**: Mobile-first approach
+  - Use Tailwind breakpoints: `sm`, `md`, `lg`, `xl`, `2xl`
+  - Test on multiple screen sizes
+- **Grid System**: 
+  - Use Tailwind's grid utilities (`grid`, `grid-cols-x`)
+  - Consistent spacing with Tailwind's spacing scale
+
+## UI Components
+- **Cards**: For businesses, categories, and features
+  - Use consistent card styles with shadcn Card component
+- **Forms**: For user input with React Hook Form
+  - Follow form layout patterns in existing forms
+  - Use proper validation with Zod
+- **Navigation**: Header and footer components
+  - Responsive navigation with mobile menu
+- **Lists**: For displaying collections of items
+  - Use consistent list styles and spacing
+
+## UI Patterns
+- **Loading States**: Show loading indicators during data fetching
+- **Error States**: Consistent error handling and display
+- **Empty States**: Display helpful content when data is empty
+- **Toast Notifications**: Use Sonner for notifications
+- **Modals & Dialogs**: Use shadcn Dialog component
+
+## Accessibility
+- Ensure proper contrast ratios for text
+- Use semantic HTML elements
+- Include proper ARIA attributes where needed
+- Support keyboard navigation
+
+## Design Framework
+
+The application uses a modern design system built on:
+
+- **Tailwind CSS** for utility-first styling
+- **shadcn/ui** for component primitives (based on Radix UI)
+- **next-themes** for theme management (dark/light mode)
+- **Lucide React** for iconography
+- **Embla Carousel** for carousel components
+- ****Sonner**** for toast notifications
+
+## Theme System
+
+The application implements a theme system with:
+
+- Light and dark mode support via `next-themes` and https://ui.shadcn.com/docs/theming
+- System preference detection
+- User theme preference persistence
+- Consistent color tokens via Tailwind variables
+
+## Color Palette
+
+The design uses a semantic color system through Tailwind:
+
+- `primary` - Primary brand color and actions
+- `secondary` - Secondary elements and backgrounds
+- `accent` - Highlight and accent elements
+- `muted` - Subdued elements and text
+- `foreground` - Default text color
+- `background` - Page backgrounds
+- `card` - Card and container backgrounds
+- `border` - Border colors
+- `destructive` - Error states and destructive actions
+
+## Typography
+
+Typography follows a consistent hierarchy:
+
+- `font-heading` - Used for headings and titles
+- `font-sans` - Default body text
+- Consistent text sizes:
+  - `text-xs` to `text-4xl` for predictable sizing
+  - `font-bold`, `font-semibold`, `font-normal` for weight variation
+
+## Component Patterns
+
+### Layout Components
+
+- Container-based responsive layouts
+- Standard spacing system using Tailwind's spacing scale
+- Consistent padding patterns:
+  - `px-4 md:px-6 lg:px-8` for horizontal container padding
+  - `py-4 md:py-6 lg:py-8` for vertical section padding
+
+### Cards and Containers
+
+- `rounded-lg` for standard border radius
+- `shadow-sm` to `shadow-xl` for elevation
+- Consistent padding inside cards: `p-4` or `p-6`
+- `hover:` states for interactive cards
+
+### Form Elements
+
+- Consistent input styling via `@/components/ui/input`
+- Form layouts using `react-hook-form`
+- Validation styling with error states
+- Label positioning and sizing consistency
+
+### Button Styles
+
+- Primary, secondary, outline, and ghost variants
+- Consistent sizing (sm, md, lg)
+- Icon+text combinations
+- Loading states
+
+### Responsive Design
+
+- Mobile-first approach
+- Standard breakpoints:
+  - `sm`: 640px
+  - `md`: 768px
+  - `lg`: 1024px
+  - `xl`: 1280px
+  - `2xl`: 1536px
+
+## Animation and Transitions
+
+- Subtle animations for UI interactions
+- `transition-` utility classes for hover states
+- Consistent durations for predictable motion
+- `tailwindcss-animate` for more complex animations
+
+## Accessibility
+
+- Color contrast meeting WCAG standards
+- Keyboard navigation support
+- Proper ARIA attributes on interactive elements
+- Focus states for keyboard users
+
+## Icons and Images
+
+- Consistent icon sizing based on context
+- Icon alignment with text
+- Image aspect ratio consistency
+- Image loading states and fallbacks
+
+## Best Practices
+
+1. Follow existing patterns for new components
+2. Use Tailwind's utility classes rather than custom CSS
+3. Use the shadcn/ui component library for UI primitives
+4. Maintain consistent spacing using Tailwind's spacing scale
+5. Support both light and dark modes using theme variables
+6. Use `clsx` or `tailwind-merge` for conditional classes
+7. Follow responsive design patterns working from mobile-first
+8. Use semantic HTML elements for proper accessibility
+
+### Card Component Pattern
+
+Cards maintain consistent structure with:
+
+- Optional media section at top
+- Heading/title
+- Description/content
+- Optional footer with actions
+
+### Data Display
+
+- Tables use `@/components/ui/table`
+- Lists maintain consistent spacing
+- Grid layouts use consistent gap spacing
+- Empty states and loading states follow consistent patterns
+
+### Navigation
+
+- Consistent navbar structure
+- Breadcrumbs for hierarchical navigation
+- Tab navigation for related content sections
+- Mobile navigation patterns that adapt to smaller screens
+
+
+@theme-provider.tsx @tailwind.config.ts @globals.css
