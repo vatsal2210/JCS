@@ -1,4 +1,3 @@
-
 'use client'
 
 import Link from 'next/link'
@@ -7,7 +6,7 @@ import Image from 'next/image'
 
 export function Header() {
   const pathname = usePathname()
-  
+
   const isActive = (path: string) => pathname === path
 
   return (
@@ -37,6 +36,12 @@ export function Header() {
             className={`text-sm font-medium transition-colors hover:text-primary ${isActive('/events') ? 'text-foreground' : 'text-foreground/60'}`}
           >
             Events
+          </Link>
+          <Link 
+            href="/blog" 
+            className={`text-sm font-medium transition-colors hover:text-primary ${isActive('/blog') ? 'text-foreground' : 'text-foreground/60'}`}
+          >
+            Blog
           </Link>
           <Link 
             href="/contact" 
