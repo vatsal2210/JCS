@@ -844,6 +844,32 @@ footer a:hover {
     border-color: #5a6268;
 }
 
+/* Announcement Sidebar Styles */
+.announcement-sidebar {
+    width: 24px;
+    min-width: 24px;
+    height: 220px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.sidebar-color-block {
+    width: 100%;
+    height: 20%;
+    border-radius: 0;
+}
+.sidebar-color-block:first-child { border-top-left-radius: 8px; border-top-right-radius: 8px; }
+.sidebar-color-block:last-child { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+
+/* Exact Announcement Sidebar Colors */
+.sidebar-red { background-color: #d32f2f; }
+.sidebar-yellow { background-color: #fbc02d; }
+.sidebar-green { background-color: #388e3c; }
+.sidebar-blue { background-color: #1976d2; }
+.sidebar-black { background-color: #222; }
+
 
 
 
