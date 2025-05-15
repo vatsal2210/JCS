@@ -869,6 +869,43 @@ footer a:hover {
 .sidebar-green { background-color: #388e3c; }
 .sidebar-blue { background-color: #1976d2; }
 .sidebar-black { background-color: #222; }
+.carousel-inner {
+    max-height: 600px;
+    overflow: hidden;
+}
+
+.carousel-inner .carousel-item img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.event-content {
+    padding: 2rem;
+    background-color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-inner {
+        max-height: 400px;
+    }
+    
+    .carousel-inner .carousel-item img {
+        height: 400px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-inner {
+        max-height: 300px;
+    }
+    
+    .carousel-inner .carousel-item img {
+        height: 300px;
+    }
+}
 
 
 
