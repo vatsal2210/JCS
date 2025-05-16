@@ -56,7 +56,7 @@ const announcements = [
         time: "All Day",
         location: "JCS Community WhatsApp Groups",
         detailContent: `
-          <div class="accommodation-style mt-3" style="font-family: 'Georgia', serif;">
+          <div class="accommodation-style mt-3">
             
             <p>As part of our effort to support the community and streamline accommodation-related communication, please note the following guidelines for posting any accommodation-related messages on the Community WhatsApp Groups:</p>
       
@@ -91,7 +91,7 @@ const announcements = [
         time: "All Day (Weekends)",
         location: "JCS Community WhatsApp Groups",
         detailContent: `
-          <div style="font-family: 'Georgia', serif;">
+          <div>
       
             <p>We are excited to announce that all Jain business owners in our group can now promote their businesses every Saturday and Sunday without admin approval!</p>
       

@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jain Community Services of Canada</title>
-    <meta name="description"
-        content="Jain Community Services of Canada (JCS) provides voluntary services to Canadian Jains and newcomers since 1985. Offering support in accommodation, job search, healthcare, and more." />
-    <meta name="keywords"
-        content="Jain, Canada, Community Services, Immigrants, Support, Healthcare, Accommodation, Job Support" />
+    <meta
+      name="description"
+      content="Jain Community Services of Canada (JCS) provides voluntary services to Canadian Jains and newcomers since 1985. Offering support in accommodation, job search, healthcare, and more."
+    />
+    <meta
+      name="keywords"
+      content="Jain, Canada, Community Services, Immigrants, Support, Healthcare, Accommodation, Job Support"
+    />
 
-    <link rel="icon" href="https://jcscanada.org/assets/JCS.png" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="https://jcscanada.org/assets/JCS.png"
+      type="image/x-icon"
+    />
 
     <link rel="canonical" href="https://jcscanada.org" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Jain Community Services of Canada" />
-    <meta property="og:description"
-        content="Providing voluntary services to Canadian Jains and newcomers since 1985. Offering support in accommodation, job search, healthcare, and more." />
+    <meta
+      property="og:description"
+      content="Providing voluntary services to Canadian Jains and newcomers since 1985. Offering support in accommodation, job search, healthcare, and more."
+    />
     <meta property="og:image" content="https://jcscanada.org/assets/JCS.png" />
     <meta property="og:url" content="https://jcscanada.org" />
     <meta property="og:site_name" content="Jain Community Services of Canada" />
@@ -26,12 +35,17 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Jain Community Services of Canada" />
-    <meta name="twitter:description"
-        content="Providing voluntary services to Canadian Jains and newcomers since 1985. Offering support in accommodation, job search, healthcare, and more." />
+    <meta
+      name="twitter:description"
+      content="Providing voluntary services to Canadian Jains and newcomers since 1985. Offering support in accommodation, job search, healthcare, and more."
+    />
     <meta name="twitter:image" content="https://jcscanada.org/assets/JCS.png" />
     <meta name="twitter:url" content="https://jcscanada.org" />
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link href="styles.css" rel="stylesheet" />
 
     <!-- Structured Data -->
@@ -51,408 +65,466 @@
       }
     </script>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JXSB80R0N"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-6JXSB80R0N"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-        gtag("config", "G-6JXSB80R0N");
+      gtag("config", "G-6JXSB80R0N");
     </script>
-</head>
 
-<body>
+    <script src="./assets/js/announcement.js"></script>
+  </head>
+
+  <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="assets/JCS.png" alt="JCS Logo" height="50" /> Jain Community
-                Services
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#announcements">Announcements</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#collaborations">Collaborations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#events">Events</a>
-                    </li>
-                    <!-- <li class="nav-item">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="assets/JCS.png" alt="JCS Logo" height="50" /> Jain Community
+          Services
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#announcements">Announcements</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#collaborations">Collaborations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#events">Events</a>
+            </li>
+            <!-- <li class="nav-item">
                         <a class="nav-link" href="#newsletters">Newsletters</a>
                     </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#history">History</a>
-                    </li>
-                    <!-- <li class="nav-item"><a class="nav-link" href="#volunteer">Volunteer Team</a></li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-                <a href="https://wa.me/14168959847" class="contact-button whatsapp-button navbar-whatsapp"
-                    target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    <span class="d-inline d-lg-none ms-1">WhatsApp Message</span>
-                </a>
-            </div>
+            <li class="nav-item">
+              <a class="nav-link" href="#history">History</a>
+            </li>
+            <!-- <li class="nav-item"><a class="nav-link" href="#volunteer">Volunteer Team</a></li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+          <a
+            href="https://wa.me/14168959847"
+            class="contact-button whatsapp-button navbar-whatsapp"
+            target="_blank"
+          >
+            <i class="fab fa-whatsapp"></i>
+            <span class="d-inline d-lg-none ms-1">WhatsApp Message</span>
+          </a>
         </div>
+      </div>
     </nav>
 
     <section id="home" class="pb-5" style="padding-top: 6rem">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h1>Welcome to Jain Community Services of Canada</h1>
-                    <p class="lead">
-                        Empowering the Canadian Jain community and newcomers since 1985
-                    </p>
-                    <p>"Seva is our religion" - સેવા પરમો ધર્મ છે</p>
-                    <p>
-                        Partnered with the Jain Society of Toronto, we ensure all
-                        donations received go directly to support our community efforts.
-                    </p>
-                    <p>
-                        Our journey began in 1976, leading to the establishment of JCS in
-                        1985. We are dedicated to providing comprehensive support to Jains
-                        across Canada.
-                    </p>
-                    <p>
-                        Explore our services to see how we can assist you in settling,
-                        finding employment, accessing healthcare, and more.
-                    </p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <img src="assets/JCS256x256.jpg" alt="Community Service" class="img-fluid rounded" />
-                </div>
-            </div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <h1>Welcome to Jain Community Services of Canada</h1>
+            <p class="lead">
+              Empowering the Canadian Jain community and newcomers since 1985
+            </p>
+            <p>"Seva is our religion" - સેવા પરમો ધર્મ છે</p>
+            <p>
+              Partnered with the Jain Society of Toronto, we ensure all
+              donations received go directly to support our community efforts.
+            </p>
+            <p>
+              Our journey began in 1976, leading to the establishment of JCS in
+              1985. We are dedicated to providing comprehensive support to Jains
+              across Canada.
+            </p>
+            <p>
+              Explore our services to see how we can assist you in settling,
+              finding employment, accessing healthcare, and more.
+            </p>
+          </div>
+          <div class="col-lg-4 text-center">
+            <img
+              src="assets/JCS256x256.jpg"
+              alt="Community Service"
+              class="img-fluid rounded"
+            />
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="services" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4 section-title">
-                Our Services and Supports
-            </h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Accommodations and Settling New Immigrants
-                            </h5>
-                            <p class="card-text">
-                                We assist new immigrants in finding housing and adapting to
-                                life in Canada, ensuring a smooth transition.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Job Support</h5>
-                            <p class="card-text">
-                                Our team provides assistance with job search, resume building,
-                                and interview preparation to help you find employment.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Hospital Visits and Food Delivery</h5>
-                            <p class="card-text">
-                                We visit and deliver food to those admitted to hospitals,
-                                ensuring they have the support they need during recovery.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Financial Support for Students & Families
-                            </h5>
-                            <p class="card-text">
-                                Providing financial assistance to students and families in
-                                need to help them overcome financial challenges.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Mental Health and Specialist Support</h5>
-                            <p class="card-text">
-                                Access to mental health professionals and specialists for
-                                individuals and families to ensure their well-being.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Shantipath and Cremation Services</h5>
-                            <p class="card-text">
-                                Offering Shantipath and cremation services as per Jain Vidhi,
-                                providing support during difficult times.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Feeding the Hungry or Homeless</h5>
-                            <p class="card-text">
-                                We provide meals to those in need, including the hungry and
-                                homeless, ensuring they do not go without food.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Buy/Sell Items in Good Condition</h5>
-                            <p class="card-text">
-                                Facilitating the buying and selling of used items in good
-                                condition to help those in need.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Matrimonial Services</h5>
-                            <p class="card-text">
-                                JCS Matrimony and Sagapan Setu services for arranging
-                                matrimonial matches within the community.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Counseling Services</h5>
-                            <p class="card-text">
-                                Providing counseling services for family disputes and
-                                connecting individuals with experts in the field.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Transport to Psychiatrist/Doctors</h5>
-                            <p class="card-text">
-                                We ensure that those who are mentally challenged have access
-                                to transportation to their medical appointments.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Additional Services</h5>
-                            <p class="card-text">
-                                Offering a variety of additional services that families may
-                                need, tailored to the specific needs of our community.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="text-center mb-4 section-title">
+          Our Services and Supports
+        </h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">
+                  Accommodations and Settling New Immigrants
+                </h5>
+                <p class="card-text">
+                  We assist new immigrants in finding housing and adapting to
+                  life in Canada, ensuring a smooth transition.
+                </p>
+              </div>
             </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Job Support</h5>
+                <p class="card-text">
+                  Our team provides assistance with job search, resume building,
+                  and interview preparation to help you find employment.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Hospital Visits and Food Delivery</h5>
+                <p class="card-text">
+                  We visit and deliver food to those admitted to hospitals,
+                  ensuring they have the support they need during recovery.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">
+                  Financial Support for Students & Families
+                </h5>
+                <p class="card-text">
+                  Providing financial assistance to students and families in
+                  need to help them overcome financial challenges.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Mental Health and Specialist Support</h5>
+                <p class="card-text">
+                  Access to mental health professionals and specialists for
+                  individuals and families to ensure their well-being.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Shantipath and Cremation Services</h5>
+                <p class="card-text">
+                  Offering Shantipath and cremation services as per Jain Vidhi,
+                  providing support during difficult times.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Feeding the Hungry or Homeless</h5>
+                <p class="card-text">
+                  We provide meals to those in need, including the hungry and
+                  homeless, ensuring they do not go without food.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Buy/Sell Items in Good Condition</h5>
+                <p class="card-text">
+                  Facilitating the buying and selling of used items in good
+                  condition to help those in need.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Matrimonial Services</h5>
+                <p class="card-text">
+                  JCS Matrimony and Sagapan Setu services for arranging
+                  matrimonial matches within the community.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Counseling Services</h5>
+                <p class="card-text">
+                  Providing counseling services for family disputes and
+                  connecting individuals with experts in the field.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Transport to Psychiatrist/Doctors</h5>
+                <p class="card-text">
+                  We ensure that those who are mentally challenged have access
+                  to transportation to their medical appointments.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Additional Services</h5>
+                <p class="card-text">
+                  Offering a variety of additional services that families may
+                  need, tailored to the specific needs of our community.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="announcements" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4 section-title">Announcements</h2>
-            <div class="row">
-                <div class="col-12 text-center">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="mb-4">Coming Soon</h3>
-                            <p class="lead">
-                                We are working on bringing you important community
-                                announcements and updates.
-                            </p>
-                            <p>
-                                Check back soon to stay informed about the latest news and
-                                developments within our community.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <h2 class="text-center mb-4 section-title">Announcements</h2>
+        <div
+          id="announcements-list"
+          class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"
+        >
+          <!-- Announcement cards will be injected here by announcements.js -->
         </div>
+      </div>
     </section>
 
     <section id="collaborations" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4 section-title">Collaborations</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Sagpan Setu of India Matrimony Services
-                            </h5>
-                            <p class="card-text">
-                                We are proud to announce our collaboration with Sagpan Setu of
-                                India, offering a dedicated matrimony service for prospective
-                                Jain brides and grooms across North America. This partnership
-                                is designed to help individuals within our community find
-                                their perfect match, fostering meaningful relationships based
-                                on shared values and traditions.
-                            </p>
-                            <p class="card-text">
-                                Through this collaboration, we aim to provide a trusted and
-                                culturally-sensitive space where members can connect with
-                                potential life partners, ensuring a personalized and
-                                fulfilling matrimony experience. We are excited to support you
-                                in finding your soulmate and building lifelong bonds within
-                                our vibrant Jain community.
-                            </p>
-                            <p class="card-text">
-                                For more details, please reach out to Manhar Sheth (Ph. +1 416
-                                895 9847), Co-founder and Chair.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Hindu Swayamsevak Sangh (HSS), Canada – Health and Wellness
-                                Initiative
-                            </h5>
-                            <p class="card-text">
-                                We are thrilled to announce our collaboration with Hindu
-                                Swayamsevak Sangh (HSS), Canada, focused on promoting Health
-                                and Wellness for individuals of all ages across Canada. This
-                                partnership aims to provide opportunities for physical
-                                fitness, mental well-being, and community connection, with
-                                activities held on weekends.
-                            </p>
-                            <p class="card-text">
-                                Through this collaboration, we offer a great way for
-                                individuals and families to stay connected to our Hindu
-                                culture, traditions, and festivals while prioritizing health.
-                                Whether you're looking to improve your physical fitness,
-                                enhance mental wellness, or engage in community-based
-                                activities, this initiative is designed to support your
-                                overall well-being.
-                            </p>
-                            <p class="card-text">
-                                Join us for this exciting opportunity to build a healthy
-                                lifestyle while staying connected to our roots.
-                            </p>
-                            <p class="card-text">
-                                For more information, to get connected to your nearest Shakha
-                                (local chapter), please reach out to Navin Bhandari (Ph. +1
-                                437 331 3001) - Vice President, Community Development.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="text-center mb-4 section-title">Collaborations</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">
+                  Sagpan Setu of India Matrimony Services
+                </h5>
+                <p class="card-text">
+                  We are proud to announce our collaboration with Sagpan Setu of
+                  India, offering a dedicated matrimony service for prospective
+                  Jain brides and grooms across North America. This partnership
+                  is designed to help individuals within our community find
+                  their perfect match, fostering meaningful relationships based
+                  on shared values and traditions.
+                </p>
+                <p class="card-text">
+                  Through this collaboration, we aim to provide a trusted and
+                  culturally-sensitive space where members can connect with
+                  potential life partners, ensuring a personalized and
+                  fulfilling matrimony experience. We are excited to support you
+                  in finding your soulmate and building lifelong bonds within
+                  our vibrant Jain community.
+                </p>
+                <p class="card-text">
+                  For more details, please reach out to Manhar Sheth (Ph. +1 416
+                  895 9847), Co-founder and Chair.
+                </p>
+              </div>
             </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">
+                  Hindu Swayamsevak Sangh (HSS), Canada – Health and Wellness
+                  Initiative
+                </h5>
+                <p class="card-text">
+                  We are thrilled to announce our collaboration with Hindu
+                  Swayamsevak Sangh (HSS), Canada, focused on promoting Health
+                  and Wellness for individuals of all ages across Canada. This
+                  partnership aims to provide opportunities for physical
+                  fitness, mental well-being, and community connection, with
+                  activities held on weekends.
+                </p>
+                <p class="card-text">
+                  Through this collaboration, we offer a great way for
+                  individuals and families to stay connected to our Hindu
+                  culture, traditions, and festivals while prioritizing health.
+                  Whether you're looking to improve your physical fitness,
+                  enhance mental wellness, or engage in community-based
+                  activities, this initiative is designed to support your
+                  overall well-being.
+                </p>
+                <p class="card-text">
+                  Join us for this exciting opportunity to build a healthy
+                  lifestyle while staying connected to our roots.
+                </p>
+                <p class="card-text">
+                  For more information, to get connected to your nearest Shakha
+                  (local chapter), please reach out to Navin Bhandari (Ph. +1
+                  437 331 3001) - Vice President, Community Development.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="events" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4 section-title">Events</h2>
-            <div class="card mb-3">
-                <div class="row justify-content-center">
-                    <div class="col-lg-9 mt-3">
-                        <!-- Image Carousel -->
-                        <div class="container-fluid">
-                            <div id="eventImagesCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#eventImagesCarousel" data-bs-slide-to="0"
-                                        class="active" aria-current="true" aria-label="Award Committee photo"></button>
-                                    <!-- Add more indicators if more images -->
-                                    <button type="button" data-bs-target="#eventImagesCarousel" data-bs-slide-to="1"
-                                        aria-label="Achievement Award Group Pic"></button>
-                                    <button type="button" data-bs-target="#eventImagesCarousel" data-bs-slide-to="2"
-                                        aria-label="Manharbhai and Sunitaben Sheth"></button>
-                                    <button type="button" data-bs-target="#eventImagesCarousel" data-bs-slide-to="3"
-                                        aria-label="Achievement Award trophy"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="assets/events_images/Career_Guidance_&_Mentorship_session/JCS Career Guidance and Lifetime Achievement Award Committee photo - May 03, 2025.jpg"
-                                            class="d-block w-100"
-                                            alt="Award Committee photo" />
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/events_images/Career_Guidance_&_Mentorship_session/JCS Career Guidance and Lifetime Achievement Award Group Pic - May 03, 2025.jpg"
-                                            class="d-block w-100"
-                                            alt="Achievement Award Group Pic" />
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/events_images/Career_Guidance_&_Mentorship_session/Manharbhai and Sunitaben Sheth - JCS Lifetime Achievement Award - May 03, 2025.jpg"
-                                            class="d-block w-100"
-                                            alt="Manharbhai and Sunitaben Sheth" />
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/events_images/Career_Guidance_&_Mentorship_session/JCS Lifetime Achievement Award trophy - May 03, 2025.jpg"
-                                            class="d-block w-100"
-                                            alt="Achievement Award trophy" />
-                                    </div>
-                                    <!-- Add more carousel-item divs for more images -->
-                                </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#eventImagesCarousel" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#eventImagesCarousel" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                            <div class="card-body event-content text-center">
-                                <h3 class="card-title">Jain Community Services of Canada Hosts Milestone Event Celebrating Community Service and Empowering Careers</h3>
-                                <p class="card-text text-md">Jain Community Services (JCS) of Canada marked a momentous
-                                    occasion on Saturday, May 3rd, 2025, by hosting a vibrant
-                                    in-person event at the Jain Society of Toronto (JSOT), Moti
-                                    Champsee Cultural Centre, bringing together over 100 members
-                                    of the Jain community for a morning of celebration, learning,
-                                    and connection.</p>
-                                <a href="./events/career-mentorship-event.html" class="btn btn-primary">
-                                    Learn More
-                                </a>
-                            </div>
-                        </div>
-
-
+      <div class="container">
+        <h2 class="text-center mb-4 section-title">Events</h2>
+        <div class="card mb-3">
+          <div class="row justify-content-center">
+            <div class="col-lg-9 mt-3">
+              <!-- Image Carousel -->
+              <div class="container-fluid">
+                <div
+                  id="eventImagesCarousel"
+                  class="carousel slide mb-4"
+                  data-bs-ride="carousel"
+                >
+                  <div class="carousel-indicators">
+                    <button
+                      type="button"
+                      data-bs-target="#eventImagesCarousel"
+                      data-bs-slide-to="0"
+                      class="active"
+                      aria-current="true"
+                      aria-label="Award Committee photo"
+                    ></button>
+                    <!-- Add more indicators if more images -->
+                    <button
+                      type="button"
+                      data-bs-target="#eventImagesCarousel"
+                      data-bs-slide-to="1"
+                      aria-label="Achievement Award Group Pic"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#eventImagesCarousel"
+                      data-bs-slide-to="2"
+                      aria-label="Manharbhai and Sunitaben Sheth"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#eventImagesCarousel"
+                      data-bs-slide-to="3"
+                      aria-label="Achievement Award trophy"
+                    ></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img
+                        src="assets/events_images/Career_Guidance_&_Mentorship_session/JCS Career Guidance and Lifetime Achievement Award Committee photo - May 03, 2025.jpg"
+                        class="d-block w-100"
+                        alt="Award Committee photo"
+                      />
                     </div>
-                    <!-- Event Content -->
-                    <!-- <div class="event-content text-center">
+                    <div class="carousel-item">
+                      <img
+                        src="assets/events_images/Career_Guidance_&_Mentorship_session/JCS Career Guidance and Lifetime Achievement Award Group Pic - May 03, 2025.jpg"
+                        class="d-block w-100"
+                        alt="Achievement Award Group Pic"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="assets/events_images/Career_Guidance_&_Mentorship_session/Manharbhai and Sunitaben Sheth - JCS Lifetime Achievement Award - May 03, 2025.jpg"
+                        class="d-block w-100"
+                        alt="Manharbhai and Sunitaben Sheth"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="assets/events_images/Career_Guidance_&_Mentorship_session/JCS Lifetime Achievement Award trophy - May 03, 2025.jpg"
+                        class="d-block w-100"
+                        alt="Achievement Award trophy"
+                      />
+                    </div>
+                    <!-- Add more carousel-item divs for more images -->
+                  </div>
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#eventImagesCarousel"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#eventImagesCarousel"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+                <div class="card-body event-content text-center">
+                  <h3 class="card-title">
+                    Jain Community Services of Canada Hosts Milestone Event
+                    Celebrating Community Service and Empowering Careers
+                  </h3>
+                  <p class="card-text text-md">
+                    Jain Community Services (JCS) of Canada marked a momentous
+                    occasion on Saturday, May 3rd, 2025, by hosting a vibrant
+                    in-person event at the Jain Society of Toronto (JSOT), Moti
+                    Champsee Cultural Centre, bringing together over 100 members
+                    of the Jain community for a morning of celebration,
+                    learning, and connection.
+                  </p>
+                  <a
+                    href="./events/career-mentorship-event.html"
+                    class="btn btn-primary"
+                  >
+                    Learn More
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Event Content -->
+            <!-- <div class="event-content text-center">
                         <h3>
                             Jain Community Services of Canada Hosts Milestone Event
                             Celebrating Community Service and Empowering Careers
@@ -465,12 +537,10 @@
                             Learn More
                         </button>
                     </div> -->
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </section>
-
-    
 
     <!-- <section id="newsletters" class="py-5">
         <div class="container">
@@ -496,38 +566,38 @@
     </section> -->
 
     <section id="history" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4 section-title">Our History</h2>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-header">1976</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Seeds Planted</h5>
-                            <p class="card-text">
-                                The seeds for Jain Community Services of Canada were planted,
-                                laying the foundation for future community support.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-header">1985 - Current</div>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Jain Community Services of Canada Founded
-                            </h5>
-                            <p class="card-text">
-                                JCS was officially founded with the help and guidance of
-                                Bapuji Mohanlal Mehta, offering services to the community
-                                24/7.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="text-center mb-4 section-title">Our History</h2>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="card">
+              <div class="card-header">1976</div>
+              <div class="card-body">
+                <h5 class="card-title">Seeds Planted</h5>
+                <p class="card-text">
+                  The seeds for Jain Community Services of Canada were planted,
+                  laying the foundation for future community support.
+                </p>
+              </div>
             </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="card">
+              <div class="card-header">1985 - Current</div>
+              <div class="card-body">
+                <h5 class="card-title">
+                  Jain Community Services of Canada Founded
+                </h5>
+                <p class="card-text">
+                  JCS was officially founded with the help and guidance of
+                  Bapuji Mohanlal Mehta, offering services to the community
+                  24/7.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- <section id="volunteer" class="py-5">
@@ -566,144 +636,184 @@
     </section> -->
 
     <section id="contact" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4 section-title">Contact Us</h2>
-            <p class="text-center lead mb-4 section-subtitle">
-                We're here to assist and support you every step of the way. Whether
-                you have questions, need guidance, or require assistance, don't
-                hesitate to reach out to us. Our dedicated team is committed to
-                providing the help and resources you need.
-            </p>
+      <div class="container">
+        <h2 class="text-center mb-4 section-title">Contact Us</h2>
+        <p class="text-center lead mb-4 section-subtitle">
+          We're here to assist and support you every step of the way. Whether
+          you have questions, need guidance, or require assistance, don't
+          hesitate to reach out to us. Our dedicated team is committed to
+          providing the help and resources you need.
+        </p>
 
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Reach Out</h3>
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h3 class="card-title">Reach Out</h3>
 
-                            <div class="contact-info">
-                                <div class="contact-detail mb-4">
-                                    <h4 class="contact-label">Email:</h4>
-                                    <div class="d-flex align-items-center mb-2">
-                                        <div class="contact-icon">
-                                            <i class="fas fa-envelope"></i>
-                                        </div>
-                                        <a href="mailto:info@jcscanada.org">info@jcscanada.org</a>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="contact-icon">
-                                            <i class="fas fa-envelope"></i>
-                                        </div>
-                                        <a href="mailto:manharsheth@rogers.com">manharsheth@rogers.com</a>
-                                    </div>
-                                </div>
-
-                                <div class="contact-detail mb-5">
-                                    <h4 class="contact-label">Phone:</h4>
-                                    <div class="d-flex align-items-center">
-                                        <div class="contact-icon">
-                                            <i class="fas fa-phone-alt"></i>
-                                        </div>
-                                        <a href="tel:+14168959847">+1 (416) 895-9847</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="text-center mb-4">
-                                <h4 class="connect-title">Connect With Us</h4>
-                            </div>
-
-                            <a href="https://wa.me/14168959847" class="contact-button whatsapp-button mb-2"
-                                target="_blank">
-                                <span class="button-text">WHATSAPP MESSAGE</span>
-                            </a>
-
-                            <a href="https://www.linkedin.com/groups/8151780/" class="contact-button linkedin-button"
-                                target="_blank">
-                                <span class="button-text">LINKEDIN GROUP</span>
-                            </a>
-                        </div>
+                <div class="contact-info">
+                  <div class="contact-detail mb-4">
+                    <h4 class="contact-label">Email:</h4>
+                    <div class="d-flex align-items-center mb-2">
+                      <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                      </div>
+                      <a href="mailto:info@jcscanada.org">info@jcscanada.org</a>
                     </div>
+                    <div class="d-flex align-items-center">
+                      <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                      </div>
+                      <a href="mailto:manharsheth@rogers.com"
+                        >manharsheth@rogers.com</a
+                      >
+                    </div>
+                  </div>
+
+                  <div class="contact-detail mb-5">
+                    <h4 class="contact-label">Phone:</h4>
+                    <div class="d-flex align-items-center">
+                      <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                      </div>
+                      <a href="tel:+14168959847">+1 (416) 895-9847</a>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Leadership Team</h3>
-                            <ul class="list-unstyled">
-                                <li class="mb-2">
-                                    <a href="https://www.linkedin.com/in/manhar-sheth-1745a748/" target="_blank">Manhar
-                                        Sheth</a>, Co-founder & Chair, Board of Trustees
-                                </li>
-                                <li class="mb-2">
-                                    <a href="https://www.linkedin.com/in/apurvatalsania/" target="_blank">Apurva
-                                        Talsania</a>, President & Head of Marketing & Communications
-                                </li>
-                                <li class="mb-2">
-                                    <a href="https://www.linkedin.com/in/niketagandhi/" target="_blank">Dr. Niketa
-                                        Gandhi</a>, Vice Chair, Board of Trustees & Head of Long-Term
-                                    Planning & Vision
-                                </li>
-                                <li class="mb-2">
-                                    <a href="https://www.linkedin.com/in/navalmal-bhandari-36876118/"
-                                        target="_blank">Navin Bhandari</a>, Vice President, Community Development
-                                </li>
-                                <li class="mb-2">
-                                    <a href="https://www.linkedin.com/in/vatsalnshah/" target="_blank">Vatsal Shah</a>,
-                                    Vice President, Information Technology
-                                </li>
-                                <li class="mb-2">Ashwin Shah, Vice President, Finance</li>
-                                <li class="mb-2">
-                                    Sudip Bhura, Vice President, Event Management
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="text-center mb-4">
+                  <h4 class="connect-title">Connect With Us</h4>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Volunteers</h3>
-                            <ul class="list-unstyled">
-                                <li class="mb-2">Prafulaben Shah</li>
-                                <li class="mb-2">
-                                    <a href="https://www.linkedin.com/in/harishjain08/" target="_blank">Harish Jain</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="https://www.linkedin.com/in/palakdesai7/" target="_blank">Palak Desai</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="https://www.linkedin.com/in/smruti2610/" target="_blank">
-                                        Smruti Shah
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="https://www.linkedin.com/in/salonishah27/" target="_blank">
-                                        Saloni Shah
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <a
+                  href="https://wa.me/14168959847"
+                  class="contact-button whatsapp-button mb-2"
+                  target="_blank"
+                >
+                  <span class="button-text">WHATSAPP MESSAGE</span>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/groups/8151780/"
+                  class="contact-button linkedin-button"
+                  target="_blank"
+                >
+                  <span class="button-text">LINKEDIN GROUP</span>
+                </a>
+              </div>
             </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h3 class="card-title">Leadership Team</h3>
+                <ul class="list-unstyled">
+                  <li class="mb-2">
+                    <a
+                      href="https://www.linkedin.com/in/manhar-sheth-1745a748/"
+                      target="_blank"
+                      >Manhar Sheth</a
+                    >, Co-founder & Chair, Board of Trustees
+                  </li>
+                  <li class="mb-2">
+                    <a
+                      href="https://www.linkedin.com/in/apurvatalsania/"
+                      target="_blank"
+                      >Apurva Talsania</a
+                    >, President & Head of Marketing & Communications
+                  </li>
+                  <li class="mb-2">
+                    <a
+                      href="https://www.linkedin.com/in/niketagandhi/"
+                      target="_blank"
+                      >Dr. Niketa Gandhi</a
+                    >, Vice Chair, Board of Trustees & Head of Long-Term
+                    Planning & Vision
+                  </li>
+                  <li class="mb-2">
+                    <a
+                      href="https://www.linkedin.com/in/navalmal-bhandari-36876118/"
+                      target="_blank"
+                      >Navin Bhandari</a
+                    >, Vice President, Community Development
+                  </li>
+                  <li class="mb-2">
+                    <a
+                      href="https://www.linkedin.com/in/vatsalnshah/"
+                      target="_blank"
+                      >Vatsal Shah</a
+                    >, Vice President, Information Technology
+                  </li>
+                  <li class="mb-2">Ashwin Shah, Vice President, Finance</li>
+                  <li class="mb-2">
+                    Sudip Bhura, Vice President, Event Management
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h3 class="card-title">Volunteers</h3>
+                <ul class="list-unstyled">
+                  <li class="mb-2">Prafulaben Shah</li>
+                  <li class="mb-2">
+                    <a
+                      href="https://www.linkedin.com/in/harishjain08/"
+                      target="_blank"
+                      >Harish Jain</a
+                    >
+                  </li>
+                  <li class="mb-2">
+                    <a
+                      href="https://www.linkedin.com/in/palakdesai7/"
+                      target="_blank"
+                      >Palak Desai</a
+                    >
+                  </li>
+                  <li class="mb-2">
+                    <a
+                      href="https://www.linkedin.com/in/smruti2610/"
+                      target="_blank"
+                    >
+                      Smruti Shah
+                    </a>
+                  </li>
+                  <li class="mb-2">
+                    <a
+                      href="https://www.linkedin.com/in/salonishah27/"
+                      target="_blank"
+                    >
+                      Saloni Shah
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2024 Jain Community Services of Canada. All rights reserved.</p>
-        <p>
-            Created by
-            <a href="https://www.linkedin.com/in/vatsalnshah/" target="_blank">Vatsal Shah</a>
-        </p>
+      <p>&copy; 2024 Jain Community Services of Canada. All rights reserved.</p>
+      <p>
+        Created by
+        <a href="https://www.linkedin.com/in/vatsalnshah/" target="_blank"
+          >Vatsal Shah</a
+        >
+      </p>
     </footer>
 
-    <script src="https://kit.fontawesome.com/01020c8cb3.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/01020c8cb3.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
-    <script src="./assets/js/announcement.js"></script>
-</body>
-
+  </body>
 </html>
