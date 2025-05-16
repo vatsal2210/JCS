@@ -145,7 +145,7 @@ p {
 }
 
 .card-header {
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     font-weight: 500;
     padding: 1rem 1.8rem;
@@ -882,6 +882,28 @@ footer a:hover {
     }
 }
 
-
-
-
+/* Announcement flyer-style */
+.flyer-style {
+    background:
+        radial-gradient(circle at top left, #ec7a2eda, transparent 30%),
+        radial-gradient(circle at bottom left, #0a61db93, transparent 30%),
+        radial-gradient(circle at center right, #0a99dba0, transparent 30%),
+        radial-gradient(ellipse at bottom, rgba(245, 245, 245, 0.8), transparent 70%);
+    background-color: #ffffff;
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    color: #111;
+    font-family: 'Helvetica Neue', sans-serif;
+        -o-border-radius: 1rem;
+    
+}
+.flyer-style h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.flyer-style h4 {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
