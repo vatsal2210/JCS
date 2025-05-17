@@ -2,7 +2,6 @@ const announcements = [
     {
         id: "career-guidance-mentorship",
         title: "Career Guidance & Mentorship",
-        design:"flyer",
         highlights: [
             "Valuable insights for youth career growth",
             "Professional mentors from diverse industries",
@@ -109,7 +108,6 @@ const announcements = [
       },{
         id: "virtual-wellness-workshop",
         title: "Virtual Wellness Workshop – The Blood Sugar Blueprint",
-        design: "wellness", // custom design flag for conditional rendering
         highlights: [
           "Prevent diabetes, build muscles",
           "Lose fat without sacrificing meals",
@@ -156,6 +154,82 @@ const announcements = [
               </div>
       
               
+            </div>
+          </div>
+        `
+      },{
+        id: "leadership-formalization",
+        title: "Announcement of Leadership Formalization",
+        highlights: [
+          "Formal committee leadership announced",
+          "Apurva Talsania appointed President",
+          "Dr. Niketa Gandhi appointed Vice Chair",
+          "New VPs in IT, Events, Finance, Community",
+          "Commitment to future service reaffirmed"
+        ],
+        date: "October 31, 2024",
+        time: "All Day",
+        location: "JCS Canada - Mississauga, ON",
+        detailContent: `
+          <div>
+            
+            <p>Jai Jinendra,</p>
+      
+            <p>On behalf of myself, <strong>Manhar Sheth</strong>, and the late <strong>Bapuji Mohanlal Mehta</strong>, co-founders of Jain Community Services of Canada (JCS Canada), we are pleased to announce the formalization of the committee that has faithfully served the Jain community in Canada for many years.</p>
+      
+            <p>As we step forward and entrust the operations to the next generation, we reaffirm our unwavering commitment to continuing our mission of providing not-for-profit humanitarian services to Jains across the country, ensuring that our values and dedication to community service remain at the heart of everything we do.</p>
+      
+            <h6 class="mt-4 fw-bold">Appointments:</h6>
+            <ul style="line-height: 1.8; padding-left: 1.2rem;">
+              <li><strong>Apurva Talsania</strong> - President & Head of Marketing & Communications</li>
+              <li><strong>Dr. Niketa Gandhi</strong> - Vice Chair, Board of Trustees & Head of Long-Term Planning & Vision</li>
+              <li><strong>Naveen Bhandari</strong> - Vice President, Community Development</li>
+              <li><strong>Vatsal Shah</strong> - Vice President, Information Technology</li>
+              <li><strong>Ashwin Shah</strong> - Vice President, Finance</li>
+              <li><strong>Sudip Bhura</strong> - Vice President, Event Management</li>
+            </ul>
+      
+            <p>Each of our Vice Presidents brings extensive experience in their respective fields and a shared dedication to serving the Jain community. Their diverse skills and commitment to community service will be instrumental in enhancing the reach and effectiveness of JCS Canada’s programs and initiatives.</p>
+      
+            <div class="mt-4 fw-bold">
+              Sincerely,<br>
+              <strong>Manhar Sheth</strong><br>
+              Co-founder & Chair, Board of Trustees<br>
+              Jain Community Services of Canada (JCS Canada)
+            </div>
+          </div>
+        `
+      },{
+        id: "meet-and-greet-immigrants",
+        title: "Meet and Greet for New Immigrants & Students",
+        highlights: [
+          "For immigrants (last 5 years) and students",
+          "Share your experiences & challenges",
+          "Get help and guidance for settling in Canada",
+          "Lunch served at 12:30 PM",
+          "Limited seats – RSVP required"
+        ],
+        date: "October 20, 2019",
+        time: "2:00 PM",
+        location: "441 Temple – Prayer Hall, 2nd Floor",
+        detailContent: `
+          <div>
+            <p>In reference to our earlier announcement to mark your calendar, we are pleased to finalize the details for this exciting and helpful session.</p>
+      
+            <p><strong>Date:</strong> Sunday, October 20, 2019</p>
+            <p><strong>Time:</strong> 2:00 PM</p>
+            <p><strong>Venue:</strong> 441 Temple – Prayer Hall (2nd Floor)</p>
+            <p><strong>Lunch:</strong> Served at 12:30 PM</p>
+      
+            <p>Come well dressed and prepared to share your experiences, challenges, and stories of settling in your chosen new country – Canada.</p>
+      
+            <p>This event is a great opportunity to get <strong>guidance, support, and community connections</strong>.</p>
+      
+            
+      
+            <div class="mt-4 fw-semibold">
+              Jain Community Services of Canada<br>
+              Contact: Manhar Sheth – 416-895-0847
             </div>
           </div>
         `
@@ -209,11 +283,11 @@ function loadAnnouncementDetail() {
                 <h4 class="text-center mb-4">${announcement.title}</h4>
                 <p>Dear JCS Community Members,</p>
                 ${announcement.detailContent}
-                <div class="mt-4">
-                <p><strong>Let's support each other and help local Jain Community grow!</strong></p>
-                    <strong>Leadership Team<br>Jain Community Services of Canada (JCS Canada)</strong>
-                </div>
-            `
+            `,
+            footer:`<div class="mt-4">
+            <p><strong>Let's support each other and help local Jain Community grow!</strong></p>
+                <strong>Leadership Team<br>Jain Community Services of Canada (JCS Canada)</strong>
+            </div>`
         };
     } else {
         announcementData = {
@@ -225,7 +299,7 @@ function loadAnnouncementDetail() {
     }
 
     // Inject data into the template
-    if (announcement.design === 'flyer') {
+    if (announcement.id === 'career-guidance-mentorship') {
         document.getElementById('announcement-title').style.display = 'none';
         document.getElementById('announcement-founded').style.display = 'none';
         document.getElementById('announcement-date').style.display = 'none';
@@ -233,7 +307,7 @@ function loadAnnouncementDetail() {
         document.getElementById('announcement-wrapper').classList.remove('card', 'shadow-lg');
         document.getElementById('announcement-wrapper').classList.add('p-0'); // or your preferred spacing
         document.getElementById('announcement-content').innerHTML = announcement.detailContent;
-    } else if (announcement.design === 'wellness') {
+    } else if (announcement.id === 'virtual-wellness-workshop') {
         document.getElementById('announcement-title').style.display = 'none';
         document.getElementById('announcement-founded').style.display = 'none';
         document.getElementById('announcement-date').style.display = 'none';
@@ -241,12 +315,20 @@ function loadAnnouncementDetail() {
         document.getElementById('announcement-wrapper').classList.remove('card', 'shadow-lg');
         document.getElementById('announcement-wrapper').classList.add('p-0'); // or your preferred spacing
         document.getElementById('announcement-content').innerHTML = announcement.detailContent;
+    } else if (announcement.id === 'leadership-formalization') {
+        announcement.footer = 'none';
+        document.getElementById('announcement-title').textContent = announcementData.title;
+        document.getElementById('announcement-founded').textContent = announcementData.founded;
+        document.getElementById('announcement-date').textContent = announcementData.date;
+        document.getElementById('announcement-content').innerHTML = announcementData.content;
+        document.getElementById('announcement-container').classList.add('mt-5','mb-5');
     } else {
         document.getElementById('announcement-title').textContent = announcementData.title;
         document.getElementById('announcement-founded').textContent = announcementData.founded;
         document.getElementById('announcement-date').textContent = announcementData.date;
         document.getElementById('announcement-content').innerHTML = announcementData.content;
         document.getElementById('announcement-container').classList.add('mt-5','mb-5');
+        document.getElementById('announcement-footer').innerHTML = announcementData.footer;
     }
     
 }
