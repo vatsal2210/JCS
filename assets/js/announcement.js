@@ -46,7 +46,8 @@ function renderAnnouncementTable() {
             const click = a.file ? `onclick="openAnnouncementModal('${a.file}')"` : '';
             return `
           <tr>
-            <td>${a.date}</td>
+            
+            <td class="ps-5">${a.date}</td>
             <td><a href="${link}" ${click} class="text-decoration-none">${a.title}</a></td>
           </tr>
         `;
