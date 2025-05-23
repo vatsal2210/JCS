@@ -287,36 +287,40 @@
         </div>
     </section>
 
-    <section id="announcements" class="py-5">
-        <div class="container">
-            <h3 class="mb-4 text-center">Announcements</h3>
-            <table class="table table-bordered table-hover" id="announcement-table">
-                <thead class="table-light">
-                    <tr>
-                        <th style="width: 20%;">Date</th>
-                        <th>Title</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Universal Modal -->
-                    <div class="modal fade" id="announcementModal" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-xl modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Announcement</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body text-center" style="height: 80vh;">
-                                    <img id="modal-image" class="img-fluid d-none" style="max-height: 100%;">
-                                    <iframe id="modal-pdf" class="w-100 h-100 d-none" frameborder="0"></iframe>
+    <section id="announcements" class="py-5 bg-light">
+        
+            <h2 class="mb-4 text-center section-title">Announcements</h2>
+            <div class="card mx-auto" style="max-width: 700px;">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-hover text-center align-middle mb-2" id="announcement-table">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-5" style="width:30%;">Date</th>
+                                <th class="ps-2">Title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Universal Modal -->
+                            <div class="modal fade" id="announcementModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-xl modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Announcement</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center" style="height: 80vh;">
+                                            <img id="modal-image" class="img-fluid d-none" style="max-height: 100%;">
+                                            <iframe id="modal-pdf" class="w-100 h-100 d-none" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </tbody>
-            </table>
-        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+       
     </section>
 
     <section id="collaborations" class="py-5">
