@@ -1,7 +1,7 @@
 const announcements = [{
         id: "career-guidance-mentorship",
         title: "Career Guidance & Mentorship",
-        date: "May 3, 2025",
+        date: "April 05, 2025",
         file: "./assets/announcements_images/JainEvent.pdf",
     },
     {
@@ -19,7 +19,7 @@ const announcements = [{
     {
         id: "virtual-wellness-workshop",
         title: "Virtual Wellness Workshop – The Blood Sugar Blueprint",
-        date: "February 1, 2025",
+        date: "January 10, 2025",
         file:"./assets/announcements_images/Jan 10, 2025 - Virtual Wellness Workshop - The Blood Sugar Blueprint.jpg",
     },
     {
@@ -31,7 +31,7 @@ const announcements = [{
     {
         id: "meet-and-greet-immigrants",
         title: "Meet and Greet for New Immigrants & Students",
-        date: "October 20, 2019",
+        date: "September 24, 2019",
         file:"./assets/announcements_images/Sep 24, 2019 - Meet and Greet New immigrants and students event.pdf",
     },
 ];
