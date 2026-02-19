@@ -9,7 +9,7 @@ const announcements = [
         id: "tapasvi-event",
         title: "Tapasvi Celebration",
         date: "August 12, 2025",
-        file: "./assets/announcements_images/Aug 12, 2025 - Tapasvi Sharing Best Practices.png",
+        file: "./assets/announcements_images/tapasvi_.jpeg",
     },
     {
         id: "picnic-play-event",
