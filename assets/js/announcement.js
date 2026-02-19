@@ -1,4 +1,23 @@
-const announcements = [{
+const announcements = [
+    {
+        id: "diwali-event",
+        title: "Diwali Celebration",
+        date: "September 26, 2025",
+        file: "./assets/announcements_images/Sept 26, 2025 - Diwali_Event_Website_Temp.png",
+    },
+    {
+        id: "tapasvi-event",
+        title: "Tapasvi Celebration",
+        date: "August 12, 2025",
+        file: "./assets/announcements_images/tapasvi_.jpeg",
+    },
+    {
+        id: "picnic-play-event",
+        title: "Picnic & Play",
+        date: "May 22, 2025",
+        file: "./assets/announcements_images/May 22, 2025 - Picnic_Event_Website_Temp.png",
+    },
+    ,{
         id: "career-guidance-mentorship",
         title: "Career Guidance & Mentorship",
         date: "April 05, 2025",
