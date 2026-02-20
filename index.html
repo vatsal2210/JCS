@@ -288,7 +288,7 @@
         </div>
     </section>
 
-    <section id="announcements" class="py-5 bg-light">
+    <!-- <section id="announcements" class="py-5 bg-light">
         
             <h2 class="mb-4 text-center section-title">Announcements</h2>
             <div class="card mx-auto" style="max-width: 700px;">
@@ -300,9 +300,9 @@
                                 <th class="ps-2">Title</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <!-- Universal Modal -->
-                            <div class="modal fade" id="announcementModal" tabindex="-1" aria-hidden="true">
+                        <tbody> -->
+                            <!-- Universal Modal --> 
+                            <!-- <div class="modal fade" id="announcementModal" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-xl modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -321,8 +321,49 @@
                     </table>
                 </div>
             </div>
-       
+    </section> -->
+    <section id="announcements" class="py-5 announcement-section">
+        <div class="container">
+    
+            <h2 class="mb-4 text-center section-title">
+                Announcements
+            </h2>
+    
+            <div class="announcement-card mx-auto">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0" id="announcement-table">
+                        <thead>
+                            <tr>
+                                <th>Announcement Date</th>
+                                <th>Event Date</th>
+                                <th>Title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- JS will render here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+        </div>
     </section>
+    
+    <!-- Modal (Move outside table) -->
+    <div class="modal fade" id="announcementModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="announcementModalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center" style="height: 80vh;">
+                    <img id="modal-image" class="img-fluid d-none" style="max-height: 100%;">
+                    <iframe id="modal-pdf" class="w-100 h-100 d-none" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section id="collaborations" class="py-5">
         <div class="container">

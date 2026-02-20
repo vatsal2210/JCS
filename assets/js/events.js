@@ -37,25 +37,40 @@ function renderEvents(events, containerId = 'eventsContainer') {
 // Create event card HTML
 function createEventCard(event, index) {
     const col = document.createElement('div');
-    col.className = 'col-lg-4 col-md-6';
+    col.className = 'col-6 mb-4 d-flex';
 
-    // Use the first image as a simple static thumbnail on the card
     const firstImage = event.images && event.images.length > 0 ? event.images[0] : null;
 
     col.innerHTML = `
-        <div class="card h-100 mb-3">
+        <div class="card event-card w-100 d-flex flex-column">
+
             ${firstImage ? `
-            <div class="event-card-image-wrapper">
-                <img src="${firstImage.src}" class="event-card-image" alt="${firstImage.alt}" />
+            <div class="event-image-wrapper">
+                <img src="${firstImage.src}" 
+                     class="event-image" 
+                     alt="${firstImage.alt || event.title}" />
             </div>
             ` : ''}
-            <div class="card-body event-content text-center">
-                <h4 class="card-title">${event.title}</h4>
-                <p class="card-text text-md">${event.shortDescription}</p>
-                <a href="${event.detailPage}" class="btn btn-primary">Learn More</a>
+
+            <div class="card-body d-flex flex-column text-center">
+
+                <h4 class="event-title">
+                    ${event.title}
+                </h4>
+
+                <p class="event-description flex-grow-1">
+                    ${event.shortDescription}
+                </p>
+
+                <a href="${event.detailPage}" 
+                   class="btn btn-primary mt-auto event-btn">
+                    Learn More
+                </a>
+
             </div>
         </div>
     `;
+
 
     return col;
 }
@@ -179,6 +194,8 @@ function getEventIdFromPath() {
         return 'diwali';
     } else if (path.includes('picnic-play-event.html')) {
         return 'picnic-play';
+    } else if (path.includes('tapasvi-online-event.html')) {
+        return 'tapasvi';
     }
     return null;
 }

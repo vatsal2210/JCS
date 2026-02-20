@@ -918,3 +918,118 @@ footer a:hover {
     }
 }
 
+/* Event Section */
+/* ===== Event Card ===== */
+.event-card {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* ===== Image Wrapper ===== */
+.event-image-wrapper {
+    width: 100%;
+    height: 260px; /* Fixed height */
+    overflow: hidden;
+    position: relative;
+}
+
+/* ===== Image Fix ===== */
+/* Card styling */
+.event-card {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Image section */
+.event-image-wrapper {
+    width: 100%;
+    height: 250px;   /* Fixed height */
+    overflow: hidden;
+}
+
+.event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Prevent distortion */
+    display: block;
+}
+
+/* Title */
+.event-title {
+    font-weight: 600;
+    margin-bottom: 12px;
+    min-height: 50px;   /* Keeps alignment */
+}
+
+/* Description */
+.event-description {
+    font-size: 14px;
+    color: #555;
+    min-height: 70px;   /* Keeps equal height */
+}
+
+/* Button */
+.event-btn {
+    border-radius: 8px;
+    padding: 6px 18px;
+}
+
+/* Announcement Title */
+/* Section background */
+.announcement-section {
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+}
+
+/* Card style */
+.announcement-card {
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    padding: 20px;
+    max-width: 900px;
+}
+
+/* Table header */
+#announcement-table thead {
+    background-color: #f1f4f8;
+    font-weight: 600;
+}
+
+/* Table hover */
+#announcement-table tbody tr {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+#announcement-table tbody tr:hover {
+    background-color: #eef4ff;
+}
+
+/* Title link */
+.announcement-title {
+    color: #0d6efd;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.announcement-title:hover {
+    text-decoration: underline;
+}
+#announcementModalTitle {
+    font-weight: 600;
+    color: #1f3b73;
+}
