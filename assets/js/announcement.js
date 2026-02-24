@@ -1,5 +1,12 @@
 const announcements = [
     {
+        id: "oral-health",
+        title: "Health Series Part 2: Oral Health Awareness and Resources",
+        date: "February 24, 2026",
+        eventDate: "April 25, 2026",
+        file: "assets/announcements_images/Part2_Oral_Health.jpeg",
+    },
+    {
         id: "medical-science",
         title: "A journey into the world of medical science",
         date: "February 19, 2026",
