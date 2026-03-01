@@ -62,7 +62,7 @@ function createEventCard(event, index) {
                     ${event.shortDescription}
                 </p>
 
-                <a href="${event.detailPage}" 
+                <a href="${event.detailPage || `events/event-detail.html?id=${encodeURIComponent(event.id)}`}" 
                    class="btn btn-primary mt-auto event-btn">
                     Learn More
                 </a>
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Check if we're on an event detail page
     const eventDetailContainer = document.getElementById('eventDetailContainer');
     if (eventDetailContainer) {
-        // Get event ID from URL or page
+        // Prefer query param; fall back to legacy detail page paths.
         const urlParams = new URLSearchParams(window.location.search);
         const eventId = urlParams.get('id') || getEventIdFromPath();
         
@@ -181,22 +181,37 @@ document.addEventListener('DOMContentLoaded', async function() {
             if (data) {
                 renderEventDetail(eventId);
             }
+        } else {
+            eventDetailContainer.innerHTML = `
+                <div class="mt-4 mb-3">
+                    <div class="card-body event-details-content mt-2 text-center">
+                        <h1 class="card-title event-title mb-3">Event not found</h1>
+                        <p class="event-description">Please go back and open the event again.</p>
+                        <a href="../index.html#events" class="btn btn-secondary">Back to Events</a>
+                    </div>
+                </div>
+            `;
         }
     }
 });
 
-// Helper function to get event ID from current page path
+// Backward compatibility for older event detail URLs.
 function getEventIdFromPath() {
     const path = window.location.pathname;
     if (path.includes('career-mentorship-event.html')) {
         return 'career-mentorship';
-    } else if (path.includes('diwali-event.html')) {
+    }
+    if (path.includes('diwali-event.html')) {
         return 'diwali';
-    } else if (path.includes('picnic-play-event.html')) {
+    }
+    if (path.includes('picnic-play-event.html')) {
         return 'picnic-play';
-    } else if (path.includes('tapasvi-online-event.html')) {
+    }
+    if (path.includes('tapasvi-online-event.html')) {
         return 'tapasvi';
+    }
+    if (path.includes('career-guidance-mentorship-event.html')) {
+        return 'career-guidance-mentorship';
     }
     return null;
 }
-
