@@ -32,6 +32,7 @@
     <meta name="twitter:url" content="https://jcscanada.org" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="styles.css" rel="stylesheet" />
 
@@ -550,9 +551,33 @@
                 providing the help and resources you need.
             </p>
 
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="card h-100">
+            <div class="row g-4 mt-2 contact-layout">
+                <div class="col-lg-8 order-2 order-lg-1">
+                    <div class="community-team h-100">
+                        <h3 class="text-center">Team Directory</h3>
+                        <div class="team-switcher" role="tablist" aria-label="Team Type">
+                            <button type="button" class="team-switch-btn active" data-team-tab="leadership"
+                                aria-selected="true">Leadership</button>
+                            <button type="button" class="team-switch-btn" data-team-tab="volunteers"
+                                aria-selected="false">Volunteers</button>
+                        </div>
+                        <section class="community-team-group" id="leadershipTeamSection">
+                            <h4 class="community-team-group-title">Leadership</h4>
+                            <div class="community-team-grid" id="leadershipTeamGrid">
+                                <!-- Leadership photos will be rendered here -->
+                            </div>
+                        </section>
+                        <section class="community-team-group d-none" id="volunteersTeamSection">
+                            <h4 class="community-team-group-title">Volunteers</h4>
+                            <div class="community-team-grid" id="volunteersTeamGrid">
+                                <!-- Volunteer photos will be rendered here -->
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 order-1 order-lg-2">
+                    <div class="card h-100 reach-out-card">
                         <div class="card-body">
                             <h3 class="card-title">Reach Out</h3>
 
@@ -600,28 +625,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Leadership Team</h3>
-                            <ul class="list-unstyled" id="leadershipContainer">
-                                <!-- Leadership will be rendered here by leadership.js from JSON -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Volunteers</h3>
-                            <ul class="list-unstyled" id="volunteersContainer">
-                                <!-- Volunteers will be rendered here by volunteers.js from JSON -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -637,8 +640,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="assets/js/events.js"></script>
-    <script src="assets/js/leadership.js"></script>
-    <script src="assets/js/volunteers.js"></script>
+    <script src="assets/js/community-team.js"></script>
     <script src="script.js"></script>
 </body>
 

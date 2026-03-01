@@ -174,6 +174,150 @@ p {
     transform: scale(1.03);
 }
 
+.community-team {
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.community-team h3 {
+    color: #0056b3;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.team-switcher {
+    display: inline-flex;
+    gap: 0.5rem;
+    padding: 0.35rem;
+    border-radius: 999px;
+    background-color: #eef5ff;
+    margin: 0 auto 1.75rem;
+}
+
+.team-switch-btn {
+    border: none;
+    background: transparent;
+    color: #0056b3;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+}
+
+.team-switch-btn.active {
+    background-color: #0056b3;
+    color: #ffffff;
+}
+
+.contact-layout .community-team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-layout .community-team-group {
+    width: 100%;
+}
+
+.community-team-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 2rem 1.25rem;
+}
+
+.community-team-group {
+    width: 100%;
+}
+
+.community-team-group-title {
+    text-align: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #0056b3;
+}
+
+.community-team-member {
+    text-align: center;
+    transition: transform 0.25s ease;
+}
+
+.community-team-member:hover {
+    transform: translateY(-2px);
+}
+
+.community-team-member img {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    background-color: #eef5ff;
+    border: 4px solid rgba(0, 86, 179, 0.1);
+    display: block;
+    margin: 0 auto 0.85rem;
+}
+
+.community-team-member .member-icon-avatar {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    background-color: #eef5ff;
+    border: 4px solid rgba(0, 86, 179, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.85rem;
+}
+
+.community-team-member .member-icon {
+    font-size: 4.2rem;
+    color: #3d78c4;
+    line-height: 1;
+}
+
+.community-team-member img.member-photo-ashwin {
+    object-position: center 18%;
+}
+
+.community-team-member img.member-photo-sunita {
+    object-position: center 20%;
+}
+
+.community-team-member h4 {
+    font-size: 0.98rem;
+    margin-bottom: 0.25rem;
+    color: #24292e;
+}
+
+.community-team-member h4 a {
+    color: #24292e;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.community-team-member h4 a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.community-team-member p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.35;
+}
+
+.reach-out-card {
+    position: sticky;
+    top: 98px;
+}
+
 #services, #collaborations {
     position: relative;
 }
@@ -491,6 +635,15 @@ footer a:hover {
     .navbar-whatsapp {
         padding: 0.35rem 0.7rem !important;
     }
+
+    .community-team-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .reach-out-card {
+        position: static;
+        top: auto;
+    }
 }
 
 @media (max-width: 768px) {
@@ -566,6 +719,19 @@ footer a:hover {
     .navbar-whatsapp span {
         font-size: 0.8rem;
     }
+
+    .community-team {
+        padding: 2rem 1.25rem;
+    }
+
+    .team-switcher {
+        margin-bottom: 1.4rem;
+    }
+
+    .community-team-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.8rem 1rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -632,6 +798,24 @@ footer a:hover {
     
     .navbar-whatsapp i {
         font-size: 1rem;
+    }
+
+    .community-team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem 0.75rem;
+    }
+
+    .community-team-member img {
+        width: 96px;
+        height: 96px;
+    }
+
+    .community-team-member h4 {
+        font-size: 0.92rem;
+    }
+
+    .community-team-member p {
+        font-size: 0.76rem;
     }
 }
 

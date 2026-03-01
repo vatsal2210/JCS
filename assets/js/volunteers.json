@@ -2,31 +2,45 @@
   "volunteers": [
     {
       "name": "Prafulaben Shah",
-      "linkedin": null
+      "title": "Volunteer",
+      "linkedin": null,
+      "image": "assets/community_images/Prafulaben.jpg"
     },
     {
       "name": "Jay Gosavalia",
-      "linkedin": "https://www.linkedin.com/in/jay-gosalia/"
+      "title": "Volunteer",
+      "linkedin": "https://www.linkedin.com/in/jay-gosalia/",
+      "image": "assets/community_images/Jay%20Gosavalia.jpeg"
     },
     {
       "name": "Dipaali Sheth",
-      "linkedin": ""
+      "title": "Volunteer",
+      "linkedin": "",
+      "image": "assets/community_images/Dipaali%20Sheth.jpg"
     },
     {
       "name": "Harish Jain",
-      "linkedin": "https://www.linkedin.com/in/harishjain08/"
+      "title": "Volunteer",
+      "linkedin": "https://www.linkedin.com/in/harishjain08/",
+      "image": "assets/community_images/Harish%20Jain.jpeg"
     },
     {
       "name": "Palak Desai",
-      "linkedin": "https://www.linkedin.com/in/palakdesai7/"
+      "title": "Volunteer",
+      "linkedin": "https://www.linkedin.com/in/palakdesai7/",
+      "image": "assets/community_images/Palak%20Desai.jpg"
     },
     {
       "name": "Smruti Shah",
-      "linkedin": "https://www.linkedin.com/in/smruti2610/"
+      "title": "Volunteer",
+      "linkedin": "https://www.linkedin.com/in/smruti2610/",
+      "image": "assets/community_images/Smruti%20Shah.jpeg"
     },
     {
       "name": "Saloni Shah",
-      "linkedin": "https://www.linkedin.com/in/salonishah27/"
+      "title": "Volunteer",
+      "linkedin": "https://www.linkedin.com/in/salonishah27/",
+      "image": "assets/community_images/Saloni%20Shah.jpeg"
     }
   ]
 }
