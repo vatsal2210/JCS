@@ -1,28 +1,28 @@
 {
   "events": [
     {
-      "id": "career-guidance-mentorship",
-      "title": "Career Guidance & Mentorship",
-      "shortDescription": "JCS team was honored with presence of our guest Dr. Vasant Kataria from Ahmednagar, India for an extremely insightful virtual session with our JCS Community on the importance of regular health checkups!! Dr. Kataria shared practical guidance on why preventive care is essential for early detection, better outcomes, and long-term well-being. He emphasized that routine screenings, timely consultations, and simple lifestyle habits including balanced nutrition, regular physical activity, adequate sleep, and stress management—play a vital role in maintaining good health. The session was informative and engaging, furnishing participants with actionable tips to take charge of their health proactively. We are very thankful to Dr. Kataria for generously sharing his time, experience and practical guidance with our community.",
+      "id": "health-series-part-1",
+      "title": "Health Series Part 1: Importance of regular Health Checkup Series",
+      "shortDescription": "JCS team was honored with presence of our guest Dr. Vasant Kataria from Ahmednagar, India for an extremely insightful virtual session with our JCS Community on the importance of regular health checkups!!",
       "images": [
         {
           "src": "assets/events_images/Health_Series_1/image2.jpeg",
-          "alt": "Career Guidance & Mentorship Event"
+          "alt": "Health Series Part 1 Event"
         },
         {
           "src": "assets/events_images/Health_Series_1/image1.jpeg",
-          "alt": "Career Guidance & Mentorship Event"
+          "alt": "Health Series Part 1 Event"
         },
         {
           "src": "assets/events_images/Health_Series_1/image3.jpeg",
-          "alt": "Career Guidance & Mentorship Event"
+          "alt": "Health Series Part 1 Event"
         },
         {
           "src": "assets/events_images/Health_Series_1/image4.jpeg",
-          "alt": "Career Guidance & Mentorship Event"
+          "alt": "Health Series Part 1 Event"
         }
       ],
-      "detailPage": "events/event-detail.html?id=career-guidance-mentorship",
+      "detailPage": "events/event-detail.html?id=health-series-part-1",
       "fullDescription": [
         "JCS team was honored with presence of our guest Dr. Vasant Kataria from Ahmednagar, India for an extremely insightful virtual session with our JCS Community on the importance of regular health checkups!! Dr. Kataria shared practical guidance on why preventive care is essential for early detection, better outcomes, and long-term well-being. He emphasized that routine screenings, timely consultations, and simple lifestyle habits including balanced nutrition, regular physical activity, adequate sleep, and stress management—play a vital role in maintaining good health. The session was informative and engaging, furnishing participants with actionable tips to take charge of their health proactively. We are very thankful to Dr. Kataria for generously sharing his time, experience and practical guidance with our community."
       ]
