@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events | Jain Community Services of Canada</title>
+    <meta name="description" content="Browse recent and upcoming events from Jain Community Services of Canada." />
+
+    <link rel="icon" href="https://jcscanada.org/assets/JCS.png" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body class="events-page">
+    <div id="homeTopAlert" class="site-top-alert d-none" role="status" aria-live="polite">
+        <div class="container site-top-alert-inner">
+            <span id="homeTopAlertText" class="site-top-alert-text"></span>
+            <a id="homeTopAlertLink" class="site-top-alert-link" href="announcements.html" target="_blank" rel="noopener">
+                View Announcement <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+            </a>
+            <button id="homeTopAlertClose" type="button" class="site-top-alert-close" aria-label="Close">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/JCS.png" alt="JCS Logo" height="50" /> Jain Community
+                Services
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="announcements.html">Announcements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#collaborations">Collaborations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="events.html">Events</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#newsletters">Newsletters</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#history">History</a>
+                    </li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#volunteer">Volunteer Team</a></li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="https://wa.me/14168959847" class="contact-button whatsapp-button navbar-whatsapp"
+                    target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span class="d-inline d-lg-none ms-1">WhatsApp Message</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="events-page-main">
+        <section class="events-hero">
+            <div class="container">
+                <p class="events-kicker">JCS Community Highlights</p>
+                <h1 class="events-hero-title">Events</h1>
+                <p class="events-hero-subtitle">
+                    Explore celebrations, workshops, and community moments organized by Jain Community Services of Canada.
+                </p>
+            </div>
+        </section>
+
+        <section id="events" class="events-grid-section pb-5">
+            <div class="container">
+                <div class="events-grid-panel">
+                    <div class="row g-4" id="eventsContainer">
+                        <!-- Events will be rendered here by events.js from JSON -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Jain Community Services of Canada. All rights reserved.</p>
+        <p>
+            Created by
+            <a href="https://www.linkedin.com/in/vatsalnshah/" target="_blank">Vatsal Shah</a>
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/announcement.js"></script>
+    <script src="assets/js/events-data.js"></script>
+    <script src="assets/js/events.js"></script>
+</body>
+
+</html>

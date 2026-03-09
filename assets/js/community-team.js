@@ -1,6 +1,13 @@
-async function loadJson(path) {
+async function loadJson(path, inlineData) {
+    if (inlineData) {
+        return inlineData;
+    }
+
     try {
         const response = await fetch(path);
+        if (!response.ok) {
+            throw new Error(`Failed to load ${path}: ${response.status}`);
+        }
         return await response.json();
     } catch (error) {
         console.error(`Error loading ${path}:`, error);
@@ -104,8 +111,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const [leadershipData, volunteersData] = await Promise.all([
-        loadJson("assets/js/leadership.json"),
-        loadJson("assets/js/volunteers.json")
+        loadJson("assets/js/leadership.json", window.JCS_LEADERSHIP_DATA),
+        loadJson("assets/js/volunteers.json", window.JCS_VOLUNTEERS_DATA)
     ]);
 
     const leadershipWithImages = (leadershipData?.leadership || []).filter(

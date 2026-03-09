@@ -3,6 +3,11 @@ let eventsData = null;
 
 // Load events data from JSON file
 async function loadEventsData() {
+    if (window.JCS_EVENTS_DATA && Array.isArray(window.JCS_EVENTS_DATA.events)) {
+        eventsData = window.JCS_EVENTS_DATA;
+        return eventsData;
+    }
+
     try {
         // Determine the correct path based on current page location
         let jsonPath = 'assets/js/events.json';
@@ -10,6 +15,9 @@ async function loadEventsData() {
             jsonPath = '../assets/js/events.json';
         }
         const response = await fetch(jsonPath);
+        if (!response.ok) {
+            throw new Error(`Failed to load events data: ${response.status}`);
+        }
         eventsData = await response.json();
         return eventsData;
     } catch (error) {
@@ -28,6 +36,17 @@ function renderEvents(events, containerId = 'eventsContainer') {
 
     container.innerHTML = '';
 
+    if (!events || events.length === 0) {
+        container.innerHTML = `
+            <div class="col-12">
+                <div class="alert alert-light border text-center mb-0">
+                    Events will be updated soon. Please check back shortly.
+                </div>
+            </div>
+        `;
+        return;
+    }
+
     events.forEach((event, index) => {
         const eventCard = createEventCard(event, index);
         container.appendChild(eventCard);
@@ -37,22 +56,25 @@ function renderEvents(events, containerId = 'eventsContainer') {
 // Create event card HTML
 function createEventCard(event, index) {
     const col = document.createElement('div');
-    col.className = 'col-6 mb-4 d-flex';
+    col.className = 'col-12 col-md-6 col-xl-4 mb-4 d-flex';
 
     const firstImage = event.images && event.images.length > 0 ? event.images[0] : null;
 
     col.innerHTML = `
         <div class="card event-card w-100 d-flex flex-column">
-
-            ${firstImage ? `
-            <div class="event-image-wrapper">
-                <img src="${firstImage.src}" 
-                     class="event-image" 
-                     alt="${firstImage.alt || event.title}" />
+            <div class="event-card-media">
+                ${firstImage ? `
+                <div class="event-image-wrapper">
+                    <img src="${firstImage.src}" 
+                         class="event-image" 
+                         alt="${firstImage.alt || event.title}" />
+                </div>
+                ` : ''}
+                <span class="event-chip">
+                    <i class="bi bi-stars"></i> Community Event
+                </span>
             </div>
-            ` : ''}
-
-            <div class="card-body d-flex flex-column text-center">
+            <div class="card-body event-card-body d-flex flex-column">
 
                 <h4 class="event-title">
                     ${event.title}
@@ -62,10 +84,12 @@ function createEventCard(event, index) {
                     ${event.shortDescription}
                 </p>
 
-                <a href="${event.detailPage || `events/event-detail.html?id=${encodeURIComponent(event.id)}`}" 
-                   class="btn btn-primary mt-auto event-btn">
-                    Learn More
-                </a>
+                <div class="event-card-footer mt-auto">
+                    <a href="${event.detailPage || `events/event-detail.html?id=${encodeURIComponent(event.id)}`}" 
+                       class="btn event-btn">
+                        View Details <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
 
             </div>
         </div>
@@ -82,9 +106,21 @@ function renderEventDetail(eventId) {
         return;
     }
 
-    const event = eventsData.events.find(e => e.id === eventId);
+    const event = findEventById(eventId);
     if (!event) {
         console.error('Event not found:', eventId);
+        const container = document.getElementById('eventDetailContainer');
+        if (container) {
+            container.innerHTML = `
+                <div class="mt-4 mb-3">
+                    <div class="card-body event-details-content mt-2 text-center">
+                        <h1 class="card-title event-title mb-3">Event not found</h1>
+                        <p class="event-description">Please go back and open the event again.</p>
+                        <a href="../events.html" class="btn btn-secondary">Back to Events</a>
+                    </div>
+                </div>
+            `;
+        }
         return;
     }
 
@@ -150,12 +186,46 @@ function renderEventDetail(eventId) {
                 </div>
             </div>
             <div class="modal-footer" style="margin-right: 1em; margin-bottom: 1em;">
-                <a href="../index.html">
+                <a href="../events.html">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
                 </a>
             </div>
         </div>
     `;
+}
+
+function normalizeEventKey(value) {
+    return String(value || '')
+        .trim()
+        .toLowerCase()
+        .replace(/&/g, 'and')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+}
+
+function getDetailPageEventId(detailPage) {
+    if (!detailPage || !detailPage.includes('id=')) return '';
+    const query = detailPage.split('?')[1] || '';
+    const params = new URLSearchParams(query);
+    return params.get('id') || '';
+}
+
+function findEventById(eventId) {
+    if (!eventId || !eventsData || !Array.isArray(eventsData.events)) {
+        return null;
+    }
+
+    const normalizedEventId = normalizeEventKey(eventId);
+
+    return eventsData.events.find((event) => {
+        const candidates = [
+            event.id,
+            event.title,
+            getDetailPageEventId(event.detailPage)
+        ];
+
+        return candidates.some((candidate) => normalizeEventKey(candidate) === normalizedEventId);
+    }) || null;
 }
 
 // Initialize events on page load
@@ -187,7 +257,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     <div class="card-body event-details-content mt-2 text-center">
                         <h1 class="card-title event-title mb-3">Event not found</h1>
                         <p class="event-description">Please go back and open the event again.</p>
-                        <a href="../index.html#events" class="btn btn-secondary">Back to Events</a>
+                        <a href="../events.html" class="btn btn-secondary">Back to Events</a>
                     </div>
                 </div>
             `;
