@@ -1,28 +1,28 @@
 const announcements = [
     {
-        id: "oral-health",
-        title: "Health Series Part 2: Oral Health Awareness and Resources",
+        id: "Health-&-Wellness-Series-part-2",
+        title: "Health & Wellness Series Part 2: Oral Health Awareness and Resources",
         date: "February 24, 2026",
         eventDate: "April 25, 2026",
         file: "assets/announcements_images/Part2_Oral_Health.jpeg",
     },
     {
         id: "medical-science",
-        title: "A journey into the world of medical science",
+        title: "Workshop for Grade 5-8 students: A journey into the world of medical science",
         date: "February 19, 2026",
         eventDate: "March 28, 2026",
         file: "assets/announcements_images/Medical_Science.jpeg",
     },
     {
         id: "fire-safety-event",
-        title: "Fire Safety",
+        title: "Fire Safety: Prevention, Detection and Escape - For Ontario residents",
         date: "February 19, 2026",
         eventDate: "March 14, 2026",
         file: "assets/announcements_images/Fire_Safety.jpeg",
     },
     {
-        id: "health-workshop",
-        title: "Health Series Part 1: Importance of regular Health Checkup Series",
+        id: "health-&-wellness-series-part-1",
+        title: "Health & Wellness Series Part 1: Importance of regular Health Checkup",
         date: "January 21, 2026",
         eventDate: "February 21, 2026",
         file: "assets/announcements_images/Part1_Health_Checkup.jpeg",
@@ -36,7 +36,7 @@ const announcements = [
     },
     {
         id: "tapasvi-event",
-        title: "Tapasvi Celebration",
+        title: "Tapasvi celebration and sharing best practices",
         date: "August 12, 2025",
         eventDate: "September 12, 2025",
         file: "./assets/announcements_images/tapasvi_.jpeg",
@@ -57,7 +57,7 @@ const announcements = [
     },
     {
         id: "accommodation-guidelines",
-        title: "Accommodation Messages on WhatsApp",
+        title: "Accommodation messages on JCS Community WhatsApp groups",
         date: "March 06, 2025",
         eventDate: "April 05, 2025",
         file: "./assets/announcements_images/Accomodation_related_messages.pdf",
@@ -78,7 +78,7 @@ const announcements = [
     },
     {
         id: "leadership-formalization",
-        title: "Announcement of Leadership Formalization",
+        title: "Announcement of JCS Canada Leadership Formalization",
         date: "September 30, 2024",
         eventDate: "October 31, 2024",
         file:"./assets/announcements_images/Oct 31, 2024 - Leadership formalization.pdf",
