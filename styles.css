@@ -67,11 +67,30 @@ p {
     display: flex;
     align-items: center;
     color: #24292e;
+    gap: 0.15rem;
 }
 
 .navbar-brand img {
     margin-right: 12px;
     border-radius: 8px;
+}
+
+.brand-text-group {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.08;
+}
+
+.brand-text-short {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f3b73;
+}
+
+.brand-text-full {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #4e5969;
 }
 
 .navbar-nav .nav-link {
@@ -614,6 +633,14 @@ footer a:hover {
     .navbar-brand {
         font-size: 1.2rem;
     }
+
+    .brand-text-short {
+        font-size: 0.94rem;
+    }
+
+    .brand-text-full {
+        font-size: 0.65rem;
+    }
     
     h1 {
         font-size: 2.3rem;
@@ -689,6 +716,14 @@ footer a:hover {
     
     .navbar-brand img {
         height: 40px !important;
+    }
+
+    .brand-text-short {
+        font-size: 0.9rem;
+    }
+
+    .brand-text-full {
+        font-size: 0.62rem;
     }
     
     .contact-detail {
@@ -766,6 +801,14 @@ footer a:hover {
     .navbar-brand img {
         height: 35px !important;
         margin-right: 8px;
+    }
+
+    .brand-text-short {
+        font-size: 0.82rem;
+    }
+
+    .brand-text-full {
+        font-size: 0.56rem;
     }
     
     .contact-button {
