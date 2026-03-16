@@ -1,6 +1,29 @@
 window.JCS_EVENTS_DATA = {
   "events": [
     {
+      "id": "fire-safety-awareness",
+      "title": "Fire Safety Awareness Session",
+      "shortDescription": "JCS Canada team hosted an informative Fire Safety Awareness Session led by Esther Khew, Public Education Officer, Fire Prevention and Risk Reduction, Mississauga Fire and Emergency Services.",
+      "images": [
+        {
+          "src": "assets/events_images/Fire-safety/fire-safety_1.jpeg",
+          "alt": "fire-safety-awareness"
+        },
+        {
+          "src": "assets/events_images/Fire-safety/fire-safety_2.jpeg",
+          "alt": "fire-safety-awareness"
+        },
+        {
+          "src": "assets/events_images/Fire-safety/fire_safety_3.jpeg",
+          "alt": "fire-safety-awareness"
+        }
+      ],
+      "detailPage": "events/event-detail.html?id=fire-safety-awareness",
+      "fullDescription": [
+        "JCS Canada team hosted an informative Fire Safety Awareness Session led by Esther Khew, Public Education Officer, Fire Prevention and Risk Reduction, Mississauga Fire and Emergency Services. The session helped community members better understand everyday fire risks and the simple steps families can take to prevent fires and respond effectively during emergencies. Esther shared practical safety guidance relevant to every household. Participants learned about safe cooking practices, which remain one of the most common causes of home fires, and the importance of never leaving cooking unattended. She also discussed the safe use of candles, proper dryer maintenance, and common electrical safety precautions that help reduce fire hazards at home. The session also highlighted newer safety concerns such as Lithium-ion batteries, explaining how devices like phones, laptops, scooters, and e-bikes should be charged and stored safely to avoid overheating or fire risks. Another key focus was early detection and alert systems. Esther explained the importance of having properly installed smoke alarms and carbon monoxide alarms in homes, along with regular alarm testing and maintenance to ensure they function when needed most. Participants also learned about creating a home escape plan, including how families can plan safe exit routes, designate a meeting point outside the home, and practice fire drills so everyone knows what to do in case of an emergency. The session provided valuable knowledge for families of all ages and reinforced the importance of prevention, preparedness, and awareness in keeping homes safe. JCS Canada sincerely thanks Esther for sharing her expertise and helping our community build stronger fire safety awareness."
+      ]
+    },
+    {
       "id": "Health-&-Wellness-Series-part-1",
       "title": "Health & Wellness Series Part 1: Importance of regular Health Checkup Series",
       "shortDescription": "JCS team was honored with presence of our guest Dr. Vasant Kataria from Ahmednagar, India for an extremely insightful virtual session with our JCS Community on the importance of regular health checkups!!",
