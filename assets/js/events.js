@@ -283,5 +283,8 @@ function getEventIdFromPath() {
     if (path.includes('career-guidance-mentorship-event.html')) {
         return 'career-guidance-mentorship';
     }
+    if (path.includes('fire-safety-awareness-event.html')) {
+        return 'fire-safety-awareness';
+    }
     return null;
 }

@@ -2,7 +2,7 @@ window.JCS_LEADERSHIP_DATA = {
   "leadership": [
     {
       "name": "Manhar Sheth",
-      "title": "Co-founder & Chair",
+      "title": "Co-founder & Chair, Board of Trustees",
       "linkedin": "https://www.linkedin.com/in/manhar-sheth-1745a748/",
       "image": "assets/community_images/Manhar%20Sheth.jpeg"
     },
