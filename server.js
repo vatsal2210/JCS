@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const http = require("http");
+const https = require("https");
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
@@ -9,12 +11,31 @@ const crypto = require("crypto");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || "0.0.0.0";
+const TRUST_PROXY = process.env.TRUST_PROXY === "true";
+const FORCE_HTTPS = process.env.FORCE_HTTPS === "true";
+const SSL_KEY_PATH = process.env.SSL_KEY_PATH || "";
+const SSL_CERT_PATH = process.env.SSL_CERT_PATH || "";
 const DATA_DIR = path.join(__dirname, "server-data");
 const ADMINS_FILE = path.join(DATA_DIR, "admins.json");
 
 const sessions = new Map();
 
+if (TRUST_PROXY) {
+    app.set("trust proxy", 1);
+}
+
 app.use(express.json());
+
+if (FORCE_HTTPS) {
+    app.use((req, res, next) => {
+        if (req.secure || req.headers["x-forwarded-proto"] === "https") {
+            return next();
+        }
+
+        const host = req.headers.host;
+        return res.redirect(301, `https://${host}${req.originalUrl}`);
+    });
+}
 
 function normalizeEmail(value) {
     return String(value || "").trim().toLowerCase();
@@ -203,6 +224,10 @@ app.get("/api/health", (req, res) => {
     });
 });
 
+app.get("/admin", (req, res) => {
+    res.redirect("/admin.html");
+});
+
 app.use(express.static(__dirname));
 
 app.use((req, res) => {
@@ -212,9 +237,21 @@ app.use((req, res) => {
 async function startServer() {
     validateRequiredConfig();
     await ensureAdminsFile();
+    const useHttps = Boolean(SSL_KEY_PATH && SSL_CERT_PATH);
 
-    const server = app.listen(PORT, HOST, () => {
-        console.log(`JCS site running on http://${HOST}:${PORT}`);
+    let server;
+
+    if (useHttps) {
+        const key = await fsp.readFile(path.resolve(SSL_KEY_PATH));
+        const cert = await fsp.readFile(path.resolve(SSL_CERT_PATH));
+        server = https.createServer({ key, cert }, app);
+    } else {
+        server = http.createServer(app);
+    }
+
+    server.listen(PORT, HOST, () => {
+        const protocol = useHttps ? "https" : "http";
+        console.log(`JCS site running on ${protocol}://${HOST}:${PORT}`);
     });
 
     server.on("error", (error) => {

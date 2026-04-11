@@ -3,11 +3,8 @@ const DRAFT_KEYS = {
     announcement: "jcs_admin_announcement_draft"
 };
 
-const ADMIN_TOKEN_KEY = "jcs_admin_api_token";
-const ADMIN_API_BASE = "/api/admin";
-
 let currentAdmin = null;
-let approvedAdmins = [];
+let approvedAdmins = Array.isArray(window.JCS_APPROVED_ADMINS) ? window.JCS_APPROVED_ADMINS : [];
 
 function readFileAsDataUrl(file) {
     return new Promise((resolve, reject) => {
@@ -89,88 +86,22 @@ function isSuperUser() {
     return currentAdmin?.role === "superuser";
 }
 
-function getAuthToken() {
-    try {
-        return localStorage.getItem(ADMIN_TOKEN_KEY) || "";
-    } catch (error) {
-        return "";
-    }
+async function sha256Hex(value) {
+    const bytes = new TextEncoder().encode(String(value || ""));
+    const hashBuffer = await crypto.subtle.digest("SHA-256", bytes);
+    return Array.from(new Uint8Array(hashBuffer))
+        .map((byte) => byte.toString(16).padStart(2, "0"))
+        .join("");
 }
 
-function setAuthToken(token) {
-    try {
-        localStorage.setItem(ADMIN_TOKEN_KEY, token);
-    } catch (error) {
-        console.error("Unable to save admin auth token.", error);
-    }
-}
+async function authenticateAdmin(email, password) {
+    const normalizedEmail = String(email || "").trim().toLowerCase();
+    const passwordHash = await sha256Hex(password);
 
-function clearAuthToken() {
-    try {
-        localStorage.removeItem(ADMIN_TOKEN_KEY);
-    } catch (error) {
-        console.error("Unable to clear admin auth token.", error);
-    }
-}
-
-async function apiRequest(path, options = {}) {
-    const headers = new Headers(options.headers || {});
-    const token = getAuthToken();
-
-    if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-    }
-
-    if (options.body && !headers.has("Content-Type")) {
-        headers.set("Content-Type", "application/json");
-    }
-
-    const response = await fetch(`${ADMIN_API_BASE}${path}`, {
-        ...options,
-        headers
-    });
-
-    let payload = {};
-    try {
-        payload = await response.json();
-    } catch (error) {
-        payload = {};
-    }
-
-    if (!response.ok) {
-        throw new Error(payload.error || "Request failed.");
-    }
-
-    return payload;
-}
-
-async function loadApprovedAdmins() {
-    if (!isSuperUser()) {
-        approvedAdmins = [];
-        return approvedAdmins;
-    }
-
-    const payload = await apiRequest("/users", { method: "GET" });
-    approvedAdmins = Array.isArray(payload.users) ? payload.users : [];
-    return approvedAdmins;
-}
-
-async function restoreServerSession() {
-    const token = getAuthToken();
-    if (!token) {
-        currentAdmin = null;
-        return null;
-    }
-
-    try {
-        const payload = await apiRequest("/session", { method: "GET" });
-        currentAdmin = payload.user || null;
-        return currentAdmin;
-    } catch (error) {
-        clearAuthToken();
-        currentAdmin = null;
-        return null;
-    }
+    return approvedAdmins.find((admin) => {
+        return String(admin.email || "").trim().toLowerCase() === normalizedEmail
+            && String(admin.passwordHash || "") === passwordHash;
+    }) || null;
 }
 
 function updateOverviewMetrics() {
@@ -292,13 +223,7 @@ function updatePermissionPanels() {
     }
 }
 
-async function refreshAdminLists() {
-    try {
-        await loadApprovedAdmins();
-    } catch (error) {
-        approvedAdmins = [];
-    }
-
+function refreshAdminLists() {
     renderSavedEvents();
     renderSavedAnnouncements();
     renderApprovedAdmins();
@@ -306,41 +231,38 @@ async function refreshAdminLists() {
     renderSettingsPanel();
 }
 
-document.addEventListener("click", async (event) => {
+document.addEventListener("click", (event) => {
     const eventDeleteId = event.target.closest("[data-delete-event]")?.dataset.deleteEvent;
     if (eventDeleteId) {
         window.JCSContentStore.deleteEvent(eventDeleteId);
-        await refreshAdminLists();
+        refreshAdminLists();
         return;
     }
 
     const announcementDeleteId = event.target.closest("[data-delete-announcement]")?.dataset.deleteAnnouncement;
     if (announcementDeleteId) {
         window.JCSContentStore.deleteAnnouncement(announcementDeleteId);
-        await refreshAdminLists();
+        refreshAdminLists();
         return;
     }
 
     const userDeleteEmail = event.target.closest("[data-delete-user]")?.dataset.deleteUser;
     if (userDeleteEmail) {
         if (!isSuperUser()) {
-            window.alert("Only super user smruti can remove admins.");
+            window.alert("Only super user can remove admins.");
             return;
         }
 
-        const shouldDelete = window.confirm(`Remove admin access for ${userDeleteEmail}?`);
-        if (!shouldDelete) return;
-
-        try {
-            await apiRequest(`/users/${encodeURIComponent(userDeleteEmail)}`, { method: "DELETE" });
-            await refreshAdminLists();
-        } catch (error) {
-            window.alert(error.message || "Unable to remove admin.");
-        }
+        window.alert("To remove an admin, edit assets/js/admin-users.js and delete that user entry.");
     }
 });
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
+    currentAdmin = window.JCSContentStore.getCurrentUser();
+    toggleAdminView(Boolean(currentAdmin), currentAdmin);
+    refreshAdminLists();
+    updatePermissionPanels();
+
     const todayField = document.getElementById("announcementDate");
     const loginForm = document.getElementById("loginForm");
     const eventForm = document.getElementById("eventAdminForm");
@@ -374,41 +296,41 @@ document.addEventListener("DOMContentLoaded", async () => {
             const message = document.getElementById("loginMessage");
 
             try {
-                const payload = await apiRequest("/login", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        email: formData.get("loginEmail"),
-                        password: formData.get("loginPassword")
-                    })
-                });
+                const admin = await authenticateAdmin(
+                    formData.get("loginEmail"),
+                    formData.get("loginPassword")
+                );
 
-                setAuthToken(payload.token);
-                currentAdmin = payload.user || null;
+                if (!admin) {
+                    throw new Error("Invalid email or password.");
+                }
+
+                currentAdmin = {
+                    id: admin.id,
+                    name: admin.name,
+                    email: admin.email,
+                    role: admin.role || "admin"
+                };
+
+                window.JCSContentStore.setCurrentUser(currentAdmin);
                 loginForm.reset();
                 toggleAdminView(true, currentAdmin);
-                await refreshAdminLists();
+                refreshAdminLists();
                 updatePermissionPanels();
                 setMessage(message, "Login successful.", "success");
             } catch (error) {
-                clearAuthToken();
                 currentAdmin = null;
-                setMessage(message, error.message, "error");
+                window.JCSContentStore.logoutUser();
+                setMessage(message, error.message || "Unable to log in.", "error");
             }
         });
     }
 
     if (logoutButton) {
-        logoutButton.addEventListener("click", async () => {
-            try {
-                await apiRequest("/logout", { method: "POST" });
-            } catch (error) {
-                // Ignore logout errors and clear local state.
-            }
-
-            clearAuthToken();
+        logoutButton.addEventListener("click", () => {
             currentAdmin = null;
-            approvedAdmins = [];
             toggleAdminView(false, null);
+            window.JCSContentStore.logoutUser();
             updatePermissionPanels();
         });
     }
@@ -442,7 +364,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 eventForm.reset();
                 clearDraft(DRAFT_KEYS.event);
                 setMessage(message, "Event saved and ready on the public events page.", "success");
-                await refreshAdminLists();
+                refreshAdminLists();
             } catch (error) {
                 setMessage(message, error.message || "Unable to save the event.", "error");
             }
@@ -479,15 +401,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     todayField.value = today;
                 }
                 setMessage(message, "Announcement saved and added to the announcements page.", "success");
-                await refreshAdminLists();
+                refreshAdminLists();
             } catch (error) {
                 setMessage(message, error.message || "Unable to save the announcement.", "error");
             }
         });
     }
-
-    await restoreServerSession();
-    toggleAdminView(Boolean(currentAdmin), currentAdmin);
-    await refreshAdminLists();
-    updatePermissionPanels();
 });
