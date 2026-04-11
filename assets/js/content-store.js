@@ -1,6 +1,5 @@
 window.JCSContentStore = (function () {
     const KEYS = {
-        adminUsers: "jcs_admin_users",
         adminSession: "jcs_admin_session",
         adminEvents: "jcs_admin_events",
         adminAnnouncements: "jcs_admin_announcements",
@@ -123,76 +122,6 @@ window.JCSContentStore = (function () {
         writeJson(KEYS.adminAnnouncements, announcements);
     }
 
-    function getUsers() {
-        const users = readJson(KEYS.adminUsers, []);
-        return Array.isArray(users) ? users : [];
-    }
-
-    function isSuperUser(user) {
-        if (!user) return false;
-        const name = String(user.name || "").trim().toLowerCase();
-        const email = String(user.email || "").trim().toLowerCase();
-        return name === "smruti" || email === "smruti";
-    }
-
-    function deleteUser(email) {
-        const normalizedEmail = String(email || "").trim().toLowerCase();
-        const users = getUsers().filter((user) => user.email !== normalizedEmail);
-        writeJson(KEYS.adminUsers, users);
-
-        const session = getCurrentUser();
-        if (session && session.email === normalizedEmail) {
-            logoutUser();
-        }
-    }
-
-    function signupUser(input) {
-        const users = getUsers();
-        const email = String(input.email || "").trim().toLowerCase();
-
-        if (!email) {
-            throw new Error("Email is required.");
-        }
-
-        if (users.some((user) => user.email === email)) {
-            throw new Error("An account with this email already exists.");
-        }
-
-        const user = {
-            id: normalizeKey(input.name || email),
-            name: String(input.name || "").trim(),
-            email,
-            password: String(input.password || ""),
-            createdAt: new Date().toISOString()
-        };
-
-        writeJson(KEYS.adminUsers, users.concat(user));
-        writeJson(KEYS.adminSession, {
-            email: user.email,
-            name: user.name,
-            loginAt: new Date().toISOString()
-        });
-
-        return user;
-    }
-
-    function loginUser(email, password) {
-        const normalizedEmail = String(email || "").trim().toLowerCase();
-        const user = getUsers().find((item) => item.email === normalizedEmail && item.password === String(password || ""));
-
-        if (!user) {
-            throw new Error("Invalid email or password.");
-        }
-
-        writeJson(KEYS.adminSession, {
-            email: user.email,
-            name: user.name,
-            loginAt: new Date().toISOString()
-        });
-
-        return user;
-    }
-
     function getCurrentUser() {
         return readJson(KEYS.adminSession, null);
     }
@@ -235,11 +164,6 @@ window.JCSContentStore = (function () {
         getStoredAnnouncements,
         saveAnnouncement,
         deleteAnnouncement,
-        getUsers,
-        isSuperUser,
-        deleteUser,
-        signupUser,
-        loginUser,
         setCurrentUser,
         getCurrentUser,
         logoutUser,
