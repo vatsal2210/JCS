@@ -39,18 +39,19 @@
                 <p class="admin-kicker">Content Management</p>
                 <h1 class="admin-title">Admin Dashboard</h1>
                 <p class="admin-subtitle">
-                    Add new events and announcements from one place while keeping the same public design.
+                    Limited-access admin panel for approved JCS team members.
                 </p>
             </div>
         </section>
 
         <section class="pb-5">
             <div class="container">
-                <div id="adminAuthSection" class="row g-4">
+                <div id="adminAuthSection" class="row g-4 justify-content-center">
                     <div class="col-lg-6">
                         <div class="card admin-panel h-100">
                             <div class="card-body">
                                 <h2 class="admin-panel-title">Login</h2>
+                                <p class="text-muted">Use the credentials provided by the site owner. Public signup is disabled.</p>
                                 <form id="loginForm" class="admin-form">
                                     <div class="mb-3">
                                         <label for="loginEmail" class="form-label">Email</label>
@@ -62,30 +63,6 @@
                                     </div>
                                     <button type="submit" class="btn admin-primary-btn">Login</button>
                                     <p id="loginMessage" class="admin-inline-message"></p>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="card admin-panel h-100">
-                            <div class="card-body">
-                                <h2 class="admin-panel-title">Sign Up</h2>
-                                <form id="signupForm" class="admin-form">
-                                    <div class="mb-3">
-                                        <label for="signupName" class="form-label">Admin Name</label>
-                                        <input type="text" class="form-control" id="signupName" name="signupName" required />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="signupEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="signupEmail" name="signupEmail" required />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="signupPassword" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="signupPassword" name="signupPassword" required />
-                                    </div>
-                                    <button type="submit" class="btn admin-primary-btn">Create Account</button>
-                                    <p id="signupMessage" class="admin-inline-message"></p>
                                 </form>
                             </div>
                         </div>
@@ -117,7 +94,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="admin-overview-card">
-                                <span class="admin-overview-label">Registered Admins</span>
+                                <span class="admin-overview-label">Approved Admins</span>
                                 <strong id="adminUserCount" class="admin-overview-value">0</strong>
                             </div>
                         </div>
@@ -221,7 +198,7 @@
                                         <a href="#savedAnnouncementsList" class="admin-settings-link">View Announcements</a>
                                         <a href="#savedEventsList" class="admin-settings-link">Saved Events</a>
                                         <a href="#savedAnnouncementsList" class="admin-settings-link">Saved Announcements</a>
-                                        <a href="#registeredAdminsList" class="admin-settings-link" data-super-only>See Admin Registrations</a>
+                                        <a href="#registeredAdminsList" class="admin-settings-link" data-super-only>See Approved Admins</a>
                                         <button type="button" class="admin-settings-link admin-settings-link-button" data-super-only disabled>Remove Admin Below</button>
                                     </div>
                                 </div>
@@ -236,7 +213,7 @@
 
                             <div class="card admin-panel mb-4" data-super-only>
                                 <div class="card-body">
-                                    <h2 class="admin-panel-title">Registered Admins</h2>
+                                    <h2 class="admin-panel-title">Approved Admins</h2>
                                     <div id="registeredAdminsList"></div>
                                 </div>
                             </div>

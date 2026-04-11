@@ -1,3 +1,14 @@
+const DRAFT_KEYS = {
+    event: "jcs_admin_event_draft",
+    announcement: "jcs_admin_announcement_draft"
+};
+
+const ADMIN_TOKEN_KEY = "jcs_admin_api_token";
+const ADMIN_API_BASE = "/api/admin";
+
+let currentAdmin = null;
+let approvedAdmins = [];
+
 function readFileAsDataUrl(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -6,11 +17,6 @@ function readFileAsDataUrl(file) {
         reader.readAsDataURL(file);
     });
 }
-
-const DRAFT_KEYS = {
-    event: "jcs_admin_event_draft",
-    announcement: "jcs_admin_announcement_draft"
-};
 
 function formatInputDate(value) {
     if (!value) return "";
@@ -76,7 +82,95 @@ function setMessage(element, text, type) {
 }
 
 function getCurrentAdmin() {
-    return window.JCSContentStore.getCurrentUser();
+    return currentAdmin;
+}
+
+function isSuperUser() {
+    return currentAdmin?.role === "superuser";
+}
+
+function getAuthToken() {
+    try {
+        return localStorage.getItem(ADMIN_TOKEN_KEY) || "";
+    } catch (error) {
+        return "";
+    }
+}
+
+function setAuthToken(token) {
+    try {
+        localStorage.setItem(ADMIN_TOKEN_KEY, token);
+    } catch (error) {
+        console.error("Unable to save admin auth token.", error);
+    }
+}
+
+function clearAuthToken() {
+    try {
+        localStorage.removeItem(ADMIN_TOKEN_KEY);
+    } catch (error) {
+        console.error("Unable to clear admin auth token.", error);
+    }
+}
+
+async function apiRequest(path, options = {}) {
+    const headers = new Headers(options.headers || {});
+    const token = getAuthToken();
+
+    if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+    }
+
+    if (options.body && !headers.has("Content-Type")) {
+        headers.set("Content-Type", "application/json");
+    }
+
+    const response = await fetch(`${ADMIN_API_BASE}${path}`, {
+        ...options,
+        headers
+    });
+
+    let payload = {};
+    try {
+        payload = await response.json();
+    } catch (error) {
+        payload = {};
+    }
+
+    if (!response.ok) {
+        throw new Error(payload.error || "Request failed.");
+    }
+
+    return payload;
+}
+
+async function loadApprovedAdmins() {
+    if (!isSuperUser()) {
+        approvedAdmins = [];
+        return approvedAdmins;
+    }
+
+    const payload = await apiRequest("/users", { method: "GET" });
+    approvedAdmins = Array.isArray(payload.users) ? payload.users : [];
+    return approvedAdmins;
+}
+
+async function restoreServerSession() {
+    const token = getAuthToken();
+    if (!token) {
+        currentAdmin = null;
+        return null;
+    }
+
+    try {
+        const payload = await apiRequest("/session", { method: "GET" });
+        currentAdmin = payload.user || null;
+        return currentAdmin;
+    } catch (error) {
+        clearAuthToken();
+        currentAdmin = null;
+        return null;
+    }
 }
 
 function updateOverviewMetrics() {
@@ -91,7 +185,7 @@ function updateOverviewMetrics() {
         announcementCount.textContent = window.JCSContentStore.getStoredAnnouncements().length;
     }
     if (adminCount) {
-        adminCount.textContent = window.JCSContentStore.getUsers().length;
+        adminCount.textContent = approvedAdmins.length;
     }
 }
 
@@ -164,69 +258,72 @@ function renderSavedAnnouncements() {
     `).join("");
 }
 
-function renderRegisteredAdmins() {
+function renderApprovedAdmins() {
     const container = document.getElementById("registeredAdminsList");
     if (!container) return;
 
-    const admins = window.JCSContentStore.getUsers();
-    const canManageAdmins = window.JCSContentStore.isSuperUser(getCurrentAdmin());
-    if (!admins.length) {
-        container.innerHTML = '<p class="admin-empty-state mb-0">No registered admins yet.</p>';
+    if (!approvedAdmins.length) {
+        container.innerHTML = '<p class="admin-empty-state mb-0">No approved admins available.</p>';
         return;
     }
 
-    container.innerHTML = admins.map((admin) => `
+    container.innerHTML = approvedAdmins.map((admin) => `
         <div class="admin-saved-item">
             <div>
                 <h4>${admin.name || "Admin User"}</h4>
                 <p>${admin.email}</p>
+                <p class="admin-meta-line">Role: ${admin.role === "superuser" ? "Super User" : "Admin User"}</p>
             </div>
-            ${canManageAdmins ? `<button type="button" class="btn btn-outline-danger btn-sm" data-delete-user="${admin.email}">Remove</button>` : ""}
+            ${isSuperUser() ? `<button type="button" class="btn btn-outline-danger btn-sm" data-delete-user="${admin.email}">Remove</button>` : ""}
         </div>
     `).join("");
 }
 
 function updatePermissionPanels() {
-    const currentUser = getCurrentAdmin();
-    const isSuperUser = window.JCSContentStore.isSuperUser(currentUser);
     const superOnlyBlocks = document.querySelectorAll("[data-super-only]");
     const superBadge = document.getElementById("adminRoleBadge");
 
     superOnlyBlocks.forEach((element) => {
-        element.classList.toggle("d-none", !isSuperUser);
+        element.classList.toggle("d-none", !isSuperUser());
     });
 
     if (superBadge) {
-        superBadge.textContent = isSuperUser ? "Super User" : "Admin User";
+        superBadge.textContent = isSuperUser() ? "Super User" : "Admin User";
     }
 }
 
-function refreshAdminLists() {
+async function refreshAdminLists() {
+    try {
+        await loadApprovedAdmins();
+    } catch (error) {
+        approvedAdmins = [];
+    }
+
     renderSavedEvents();
     renderSavedAnnouncements();
-    renderRegisteredAdmins();
+    renderApprovedAdmins();
     updateOverviewMetrics();
     renderSettingsPanel();
 }
 
-document.addEventListener("click", (event) => {
+document.addEventListener("click", async (event) => {
     const eventDeleteId = event.target.closest("[data-delete-event]")?.dataset.deleteEvent;
     if (eventDeleteId) {
         window.JCSContentStore.deleteEvent(eventDeleteId);
-        refreshAdminLists();
+        await refreshAdminLists();
         return;
     }
 
     const announcementDeleteId = event.target.closest("[data-delete-announcement]")?.dataset.deleteAnnouncement;
     if (announcementDeleteId) {
         window.JCSContentStore.deleteAnnouncement(announcementDeleteId);
-        refreshAdminLists();
+        await refreshAdminLists();
         return;
     }
 
     const userDeleteEmail = event.target.closest("[data-delete-user]")?.dataset.deleteUser;
     if (userDeleteEmail) {
-        if (!window.JCSContentStore.isSuperUser(getCurrentAdmin())) {
+        if (!isSuperUser()) {
             window.alert("Only super user smruti can remove admins.");
             return;
         }
@@ -234,25 +331,17 @@ document.addEventListener("click", (event) => {
         const shouldDelete = window.confirm(`Remove admin access for ${userDeleteEmail}?`);
         if (!shouldDelete) return;
 
-        const currentUser = window.JCSContentStore.getCurrentUser();
-        window.JCSContentStore.deleteUser(userDeleteEmail);
-        refreshAdminLists();
-
-        if (currentUser && currentUser.email === userDeleteEmail) {
-            toggleAdminView(false, null);
-            updatePermissionPanels();
+        try {
+            await apiRequest(`/users/${encodeURIComponent(userDeleteEmail)}`, { method: "DELETE" });
+            await refreshAdminLists();
+        } catch (error) {
+            window.alert(error.message || "Unable to remove admin.");
         }
     }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const currentUser = getCurrentAdmin();
-    toggleAdminView(Boolean(currentUser), currentUser);
-    refreshAdminLists();
-    updatePermissionPanels();
-
+document.addEventListener("DOMContentLoaded", async () => {
     const todayField = document.getElementById("announcementDate");
-    const signupForm = document.getElementById("signupForm");
     const loginForm = document.getElementById("loginForm");
     const eventForm = document.getElementById("eventAdminForm");
     const announcementForm = document.getElementById("announcementAdminForm");
@@ -278,54 +367,47 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (signupForm) {
-        signupForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const formData = new FormData(signupForm);
-            const message = document.getElementById("signupMessage");
-
-            try {
-                const user = window.JCSContentStore.signupUser({
-                    name: formData.get("signupName"),
-                    email: formData.get("signupEmail"),
-                    password: formData.get("signupPassword")
-                });
-                signupForm.reset();
-                toggleAdminView(true, user);
-                refreshAdminLists();
-                updatePermissionPanels();
-                setMessage(message, "Account created successfully.", "success");
-            } catch (error) {
-                setMessage(message, error.message, "error");
-            }
-        });
-    }
-
     if (loginForm) {
-        loginForm.addEventListener("submit", (event) => {
+        loginForm.addEventListener("submit", async (event) => {
             event.preventDefault();
             const formData = new FormData(loginForm);
             const message = document.getElementById("loginMessage");
 
             try {
-                const user = window.JCSContentStore.loginUser(
-                    formData.get("loginEmail"),
-                    formData.get("loginPassword")
-                );
+                const payload = await apiRequest("/login", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        email: formData.get("loginEmail"),
+                        password: formData.get("loginPassword")
+                    })
+                });
+
+                setAuthToken(payload.token);
+                currentAdmin = payload.user || null;
                 loginForm.reset();
-                toggleAdminView(true, user);
-                refreshAdminLists();
+                toggleAdminView(true, currentAdmin);
+                await refreshAdminLists();
                 updatePermissionPanels();
                 setMessage(message, "Login successful.", "success");
             } catch (error) {
+                clearAuthToken();
+                currentAdmin = null;
                 setMessage(message, error.message, "error");
             }
         });
     }
 
     if (logoutButton) {
-        logoutButton.addEventListener("click", () => {
-            window.JCSContentStore.logoutUser();
+        logoutButton.addEventListener("click", async () => {
+            try {
+                await apiRequest("/logout", { method: "POST" });
+            } catch (error) {
+                // Ignore logout errors and clear local state.
+            }
+
+            clearAuthToken();
+            currentAdmin = null;
+            approvedAdmins = [];
             toggleAdminView(false, null);
             updatePermissionPanels();
         });
@@ -360,7 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 eventForm.reset();
                 clearDraft(DRAFT_KEYS.event);
                 setMessage(message, "Event saved and ready on the public events page.", "success");
-                refreshAdminLists();
+                await refreshAdminLists();
             } catch (error) {
                 setMessage(message, error.message || "Unable to save the event.", "error");
             }
@@ -397,10 +479,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     todayField.value = today;
                 }
                 setMessage(message, "Announcement saved and added to the announcements page.", "success");
-                refreshAdminLists();
+                await refreshAdminLists();
             } catch (error) {
                 setMessage(message, error.message || "Unable to save the announcement.", "error");
             }
         });
     }
+
+    await restoreServerSession();
+    toggleAdminView(Boolean(currentAdmin), currentAdmin);
+    await refreshAdminLists();
+    updatePermissionPanels();
 });
