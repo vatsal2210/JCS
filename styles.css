@@ -512,6 +512,7 @@ p {
     transform: translateX(-50%);
 }
 
+<<<<<<< HEAD
 /* Admin page */
 .admin-page {
     background:
@@ -839,6 +840,8 @@ p {
     }
 }
 
+=======
+>>>>>>> parent of 0734d39 (Admin_Page)
 /* Contact Buttons */
 .contact-button {
     display: block;

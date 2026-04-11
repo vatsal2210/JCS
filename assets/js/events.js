@@ -4,10 +4,7 @@ let eventsData = null;
 // Load events data from JSON file
 async function loadEventsData() {
     if (window.JCS_EVENTS_DATA && Array.isArray(window.JCS_EVENTS_DATA.events)) {
-        const storedEvents = window.JCSContentStore?.getStoredEvents?.() || [];
-        eventsData = {
-            events: storedEvents.concat(window.JCS_EVENTS_DATA.events)
-        };
+        eventsData = window.JCS_EVENTS_DATA;
         return eventsData;
     }
 
