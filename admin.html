@@ -97,73 +97,147 @@
                         <div>
                             <p class="mb-1 admin-session-label">Signed in as</p>
                             <strong id="adminSessionName"></strong>
+                            <span id="adminRoleBadge" class="admin-role-badge">Admin User</span>
                         </div>
                         <button id="adminLogoutButton" type="button" class="btn btn-outline-secondary btn-sm">Logout</button>
                     </div>
 
+                    <div class="row g-3 admin-overview-row">
+                        <div class="col-md-4">
+                            <div class="admin-overview-card">
+                                <span class="admin-overview-label">Custom Events</span>
+                                <strong id="adminEventCount" class="admin-overview-value">0</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="admin-overview-card">
+                                <span class="admin-overview-label">Announcements</span>
+                                <strong id="adminAnnouncementCount" class="admin-overview-value">0</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="admin-overview-card">
+                                <span class="admin-overview-label">Registered Admins</span>
+                                <strong id="adminUserCount" class="admin-overview-value">0</strong>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row g-4">
                         <div class="col-xl-7">
-                            <div class="card admin-panel mb-4">
-                                <div class="card-body">
-                                    <h2 class="admin-panel-title">Add New Event</h2>
-                                    <form id="eventAdminForm" class="admin-form">
-                                        <div class="mb-3">
-                                            <label for="eventTitle" class="form-label">Event Title</label>
-                                            <input type="text" class="form-control" id="eventTitle" name="eventTitle" required />
+                            <div class="accordion admin-accordion" id="adminContentAccordion">
+                                <div class="accordion-item admin-accordion-item mb-4">
+                                    <h2 class="accordion-header" id="eventDropdownHeading">
+                                        <button class="accordion-button admin-accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#eventDropdownPanel" aria-expanded="true" aria-controls="eventDropdownPanel">
+                                            Add Event
+                                        </button>
+                                    </h2>
+                                    <div id="eventDropdownPanel" class="accordion-collapse collapse show" aria-labelledby="eventDropdownHeading" data-bs-parent="#adminContentAccordion">
+                                        <div class="accordion-body">
+                                            <form id="eventAdminForm" class="admin-form">
+                                                <div class="mb-3">
+                                                    <label for="eventTitle" class="form-label">Event Title</label>
+                                                    <input type="text" class="form-control" id="eventTitle" name="eventTitle" required />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="eventShortDescription" class="form-label">Short Description</label>
+                                                    <textarea class="form-control" id="eventShortDescription" name="eventShortDescription" rows="3" required></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="eventFullDescription" class="form-label">Full Description</label>
+                                                    <textarea class="form-control" id="eventFullDescription" name="eventFullDescription" rows="7" required></textarea>
+                                                    <div class="form-text">Use a blank line between paragraphs.</div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="eventImages" class="form-label">Event Images</label>
+                                                    <input type="file" class="form-control" id="eventImages" accept="image/*" multiple required />
+                                                </div>
+                                                <button type="submit" class="btn admin-primary-btn">Save Event</button>
+                                                <p id="eventFormMessage" class="admin-inline-message"></p>
+                                            </form>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="eventShortDescription" class="form-label">Short Description</label>
-                                            <textarea class="form-control" id="eventShortDescription" name="eventShortDescription" rows="3" required></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="eventFullDescription" class="form-label">Full Description</label>
-                                            <textarea class="form-control" id="eventFullDescription" name="eventFullDescription" rows="7" required></textarea>
-                                            <div class="form-text">Use a blank line between paragraphs.</div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="eventImages" class="form-label">Event Images</label>
-                                            <input type="file" class="form-control" id="eventImages" accept="image/*" multiple required />
-                                        </div>
-                                        <button type="submit" class="btn admin-primary-btn">Save Event</button>
-                                        <p id="eventFormMessage" class="admin-inline-message"></p>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="card admin-panel">
-                                <div class="card-body">
-                                    <h2 class="admin-panel-title">Add Announcement</h2>
-                                    <form id="announcementAdminForm" class="admin-form">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <label for="announcementDate" class="form-label">Announcement Date</label>
-                                                <input type="text" class="form-control" id="announcementDate" readonly />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="announcementEventDate" class="form-label">Event Date</label>
-                                                <input type="date" class="form-control" id="announcementEventDate" name="announcementEventDate" required />
-                                            </div>
+                                <div class="accordion-item admin-accordion-item">
+                                    <h2 class="accordion-header" id="announcementDropdownHeading">
+                                        <button class="accordion-button admin-accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#announcementDropdownPanel" aria-expanded="false" aria-controls="announcementDropdownPanel">
+                                            Add Announcement
+                                        </button>
+                                    </h2>
+                                    <div id="announcementDropdownPanel" class="accordion-collapse collapse" aria-labelledby="announcementDropdownHeading" data-bs-parent="#adminContentAccordion">
+                                        <div class="accordion-body">
+                                            <form id="announcementAdminForm" class="admin-form">
+                                                <div class="row g-3">
+                                                    <div class="col-md-6">
+                                                        <label for="announcementDate" class="form-label">Announcement Date</label>
+                                                        <input type="text" class="form-control" id="announcementDate" readonly />
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="announcementEventDate" class="form-label">Event Date</label>
+                                                        <input type="date" class="form-control" id="announcementEventDate" name="announcementEventDate" required />
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3 mb-3">
+                                                    <label for="announcementTitle" class="form-label">Title</label>
+                                                    <input type="text" class="form-control" id="announcementTitle" name="announcementTitle" required />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="announcementFile" class="form-label">Poster / PDF</label>
+                                                    <input type="file" class="form-control" id="announcementFile" accept="image/*,.pdf,application/pdf" required />
+                                                </div>
+                                                <button type="submit" class="btn admin-primary-btn">Save Announcement</button>
+                                                <p id="announcementFormMessage" class="admin-inline-message"></p>
+                                            </form>
                                         </div>
-                                        <div class="mt-3 mb-3">
-                                            <label for="announcementTitle" class="form-label">Title</label>
-                                            <input type="text" class="form-control" id="announcementTitle" name="announcementTitle" required />
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="announcementFile" class="form-label">Poster / PDF</label>
-                                            <input type="file" class="form-control" id="announcementFile" accept="image/*,.pdf,application/pdf" required />
-                                        </div>
-                                        <button type="submit" class="btn admin-primary-btn">Save Announcement</button>
-                                        <p id="announcementFormMessage" class="admin-inline-message"></p>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-xl-5">
+                            <div class="card admin-panel mb-4 admin-settings-card">
+                                <div class="card-body">
+                                    <div class="admin-settings-header">
+                                        <div>
+                                            <h2 class="admin-panel-title mb-2">Settings</h2>
+                                            <p class="admin-settings-copy mb-0">Control visibility and quick access for admin areas.</p>
+                                        </div>
+                                        <i class="bi bi-sliders admin-settings-icon" aria-hidden="true"></i>
+                                    </div>
+
+                                    <label class="admin-toggle-row" for="adminPageVisibleSetting">
+                                        <div>
+                                            <strong>Show Admin Page Link</strong>
+                                            <p id="adminVisibilityStatus" class="mb-0 admin-settings-status"></p>
+                                        </div>
+                                        <div class="form-check form-switch admin-visibility-switch">
+                                            <input class="form-check-input" type="checkbox" id="adminPageVisibleSetting" />
+                                        </div>
+                                    </label>
+
+                                    <div class="admin-settings-links">
+                                        <a href="#savedEventsList" class="admin-settings-link">View Events</a>
+                                        <a href="#savedAnnouncementsList" class="admin-settings-link">View Announcements</a>
+                                        <a href="#savedEventsList" class="admin-settings-link">Saved Events</a>
+                                        <a href="#savedAnnouncementsList" class="admin-settings-link">Saved Announcements</a>
+                                        <a href="#registeredAdminsList" class="admin-settings-link" data-super-only>See Admin Registrations</a>
+                                        <button type="button" class="admin-settings-link admin-settings-link-button" data-super-only disabled>Remove Admin Below</button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="card admin-panel mb-4">
                                 <div class="card-body">
                                     <h2 class="admin-panel-title">Saved Events</h2>
                                     <div id="savedEventsList"></div>
+                                </div>
+                            </div>
+
+                            <div class="card admin-panel mb-4" data-super-only>
+                                <div class="card-body">
+                                    <h2 class="admin-panel-title">Registered Admins</h2>
+                                    <div id="registeredAdminsList"></div>
                                 </div>
                             </div>
 

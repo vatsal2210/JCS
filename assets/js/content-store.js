@@ -3,7 +3,8 @@ window.JCSContentStore = (function () {
         adminUsers: "jcs_admin_users",
         adminSession: "jcs_admin_session",
         adminEvents: "jcs_admin_events",
-        adminAnnouncements: "jcs_admin_announcements"
+        adminAnnouncements: "jcs_admin_announcements",
+        siteSettings: "jcs_site_settings"
     };
 
     function readJson(key, fallback) {
@@ -68,6 +69,7 @@ window.JCSContentStore = (function () {
             fullDescription: Array.isArray(input.fullDescription)
                 ? input.fullDescription
                 : toParagraphs(input.fullDescription),
+            createdBy: input.createdBy || null,
             createdAt: input.createdAt || new Date().toISOString(),
             source: "admin"
         };
@@ -106,6 +108,7 @@ window.JCSContentStore = (function () {
             announcementDate: String(input.date || formatDisplayDate(new Date())).trim(),
             eventDate: String(input.eventDate || "").trim(),
             file: String(input.file || "").trim(),
+            createdBy: input.createdBy || null,
             createdAt: input.createdAt || new Date().toISOString(),
             source: "admin"
         };
@@ -123,6 +126,24 @@ window.JCSContentStore = (function () {
     function getUsers() {
         const users = readJson(KEYS.adminUsers, []);
         return Array.isArray(users) ? users : [];
+    }
+
+    function isSuperUser(user) {
+        if (!user) return false;
+        const name = String(user.name || "").trim().toLowerCase();
+        const email = String(user.email || "").trim().toLowerCase();
+        return name === "smruti" || email === "smruti";
+    }
+
+    function deleteUser(email) {
+        const normalizedEmail = String(email || "").trim().toLowerCase();
+        const users = getUsers().filter((user) => user.email !== normalizedEmail);
+        writeJson(KEYS.adminUsers, users);
+
+        const session = getCurrentUser();
+        if (session && session.email === normalizedEmail) {
+            logoutUser();
+        }
     }
 
     function signupUser(input) {
@@ -180,6 +201,26 @@ window.JCSContentStore = (function () {
         localStorage.removeItem(KEYS.adminSession);
     }
 
+    function getSiteSettings() {
+        const defaults = {
+            adminPageVisible: false
+        };
+        const saved = readJson(KEYS.siteSettings, defaults);
+        return {
+            ...defaults,
+            ...(saved || {})
+        };
+    }
+
+    function updateSiteSettings(nextSettings) {
+        const merged = {
+            ...getSiteSettings(),
+            ...(nextSettings || {})
+        };
+        writeJson(KEYS.siteSettings, merged);
+        return merged;
+    }
+
     return {
         formatDisplayDate,
         normalizeKey,
@@ -191,9 +232,13 @@ window.JCSContentStore = (function () {
         saveAnnouncement,
         deleteAnnouncement,
         getUsers,
+        isSuperUser,
+        deleteUser,
         signupUser,
         loginUser,
         getCurrentUser,
-        logoutUser
+        logoutUser,
+        getSiteSettings,
+        updateSiteSettings
     };
 })();

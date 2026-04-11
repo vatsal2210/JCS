@@ -75,6 +75,39 @@ function setMessage(element, text, type) {
     element.textContent = text || "";
 }
 
+function getCurrentAdmin() {
+    return window.JCSContentStore.getCurrentUser();
+}
+
+function updateOverviewMetrics() {
+    const eventCount = document.getElementById("adminEventCount");
+    const announcementCount = document.getElementById("adminAnnouncementCount");
+    const adminCount = document.getElementById("adminUserCount");
+
+    if (eventCount) {
+        eventCount.textContent = window.JCSContentStore.getStoredEvents().length;
+    }
+    if (announcementCount) {
+        announcementCount.textContent = window.JCSContentStore.getStoredAnnouncements().length;
+    }
+    if (adminCount) {
+        adminCount.textContent = window.JCSContentStore.getUsers().length;
+    }
+}
+
+function renderSettingsPanel() {
+    const toggle = document.getElementById("adminPageVisibleSetting");
+    const status = document.getElementById("adminVisibilityStatus");
+    if (!toggle) return;
+
+    const settings = window.JCSContentStore.getSiteSettings();
+    toggle.checked = Boolean(settings.adminPageVisible);
+
+    if (status) {
+        status.textContent = settings.adminPageVisible ? "Admin link visible in site navigation" : "Admin link hidden from site navigation";
+    }
+}
+
 function toggleAdminView(isLoggedIn, user) {
     const authSection = document.getElementById("adminAuthSection");
     const dashboardSection = document.getElementById("adminDashboard");
@@ -102,6 +135,7 @@ function renderSavedEvents() {
             <div>
                 <h4>${event.title}</h4>
                 <p>${event.shortDescription}</p>
+                <p class="admin-meta-line">Added by: ${event.createdBy?.name || event.createdBy?.email || "Unknown admin"}</p>
             </div>
             <button type="button" class="btn btn-outline-danger btn-sm" data-delete-event="${event.id}">Delete</button>
         </div>
@@ -123,15 +157,56 @@ function renderSavedAnnouncements() {
             <div>
                 <h4>${announcement.title}</h4>
                 <p>Announcement: ${announcement.date} | Event: ${announcement.eventDate}</p>
+                <p class="admin-meta-line">Added by: ${announcement.createdBy?.name || announcement.createdBy?.email || "Unknown admin"}</p>
             </div>
             <button type="button" class="btn btn-outline-danger btn-sm" data-delete-announcement="${announcement.id}">Delete</button>
         </div>
     `).join("");
 }
 
+function renderRegisteredAdmins() {
+    const container = document.getElementById("registeredAdminsList");
+    if (!container) return;
+
+    const admins = window.JCSContentStore.getUsers();
+    const canManageAdmins = window.JCSContentStore.isSuperUser(getCurrentAdmin());
+    if (!admins.length) {
+        container.innerHTML = '<p class="admin-empty-state mb-0">No registered admins yet.</p>';
+        return;
+    }
+
+    container.innerHTML = admins.map((admin) => `
+        <div class="admin-saved-item">
+            <div>
+                <h4>${admin.name || "Admin User"}</h4>
+                <p>${admin.email}</p>
+            </div>
+            ${canManageAdmins ? `<button type="button" class="btn btn-outline-danger btn-sm" data-delete-user="${admin.email}">Remove</button>` : ""}
+        </div>
+    `).join("");
+}
+
+function updatePermissionPanels() {
+    const currentUser = getCurrentAdmin();
+    const isSuperUser = window.JCSContentStore.isSuperUser(currentUser);
+    const superOnlyBlocks = document.querySelectorAll("[data-super-only]");
+    const superBadge = document.getElementById("adminRoleBadge");
+
+    superOnlyBlocks.forEach((element) => {
+        element.classList.toggle("d-none", !isSuperUser);
+    });
+
+    if (superBadge) {
+        superBadge.textContent = isSuperUser ? "Super User" : "Admin User";
+    }
+}
+
 function refreshAdminLists() {
     renderSavedEvents();
     renderSavedAnnouncements();
+    renderRegisteredAdmins();
+    updateOverviewMetrics();
+    renderSettingsPanel();
 }
 
 document.addEventListener("click", (event) => {
@@ -146,13 +221,35 @@ document.addEventListener("click", (event) => {
     if (announcementDeleteId) {
         window.JCSContentStore.deleteAnnouncement(announcementDeleteId);
         refreshAdminLists();
+        return;
+    }
+
+    const userDeleteEmail = event.target.closest("[data-delete-user]")?.dataset.deleteUser;
+    if (userDeleteEmail) {
+        if (!window.JCSContentStore.isSuperUser(getCurrentAdmin())) {
+            window.alert("Only super user smruti can remove admins.");
+            return;
+        }
+
+        const shouldDelete = window.confirm(`Remove admin access for ${userDeleteEmail}?`);
+        if (!shouldDelete) return;
+
+        const currentUser = window.JCSContentStore.getCurrentUser();
+        window.JCSContentStore.deleteUser(userDeleteEmail);
+        refreshAdminLists();
+
+        if (currentUser && currentUser.email === userDeleteEmail) {
+            toggleAdminView(false, null);
+            updatePermissionPanels();
+        }
     }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    const currentUser = window.JCSContentStore.getCurrentUser();
+    const currentUser = getCurrentAdmin();
     toggleAdminView(Boolean(currentUser), currentUser);
     refreshAdminLists();
+    updatePermissionPanels();
 
     const todayField = document.getElementById("announcementDate");
     const signupForm = document.getElementById("signupForm");
@@ -160,6 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const eventForm = document.getElementById("eventAdminForm");
     const announcementForm = document.getElementById("announcementAdminForm");
     const logoutButton = document.getElementById("adminLogoutButton");
+    const adminPageVisibleSetting = document.getElementById("adminPageVisibleSetting");
 
     restoreFormFields(eventForm, readDraft(DRAFT_KEYS.event));
     restoreFormFields(announcementForm, readDraft(DRAFT_KEYS.announcement));
@@ -170,6 +268,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     watchDraftFields(eventForm, DRAFT_KEYS.event);
     watchDraftFields(announcementForm, DRAFT_KEYS.announcement);
+
+    if (adminPageVisibleSetting) {
+        adminPageVisibleSetting.addEventListener("change", () => {
+            window.JCSContentStore.updateSiteSettings({
+                adminPageVisible: adminPageVisibleSetting.checked
+            });
+            renderSettingsPanel();
+        });
+    }
 
     if (signupForm) {
         signupForm.addEventListener("submit", (event) => {
@@ -185,6 +292,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 signupForm.reset();
                 toggleAdminView(true, user);
+                refreshAdminLists();
+                updatePermissionPanels();
                 setMessage(message, "Account created successfully.", "success");
             } catch (error) {
                 setMessage(message, error.message, "error");
@@ -205,6 +314,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
                 loginForm.reset();
                 toggleAdminView(true, user);
+                refreshAdminLists();
+                updatePermissionPanels();
                 setMessage(message, "Login successful.", "success");
             } catch (error) {
                 setMessage(message, error.message, "error");
@@ -216,6 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
         logoutButton.addEventListener("click", () => {
             window.JCSContentStore.logoutUser();
             toggleAdminView(false, null);
+            updatePermissionPanels();
         });
     }
 
@@ -241,7 +353,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     title: formData.get("eventTitle"),
                     shortDescription: formData.get("eventShortDescription"),
                     fullDescription: formData.get("eventFullDescription"),
-                    images
+                    images,
+                    createdBy: getCurrentAdmin()
                 });
 
                 eventForm.reset();
@@ -274,7 +387,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     title: formData.get("announcementTitle"),
                     date: today,
                     eventDate: formatInputDate(formData.get("announcementEventDate")),
-                    file: fileData
+                    file: fileData,
+                    createdBy: getCurrentAdmin()
                 });
 
                 announcementForm.reset();
