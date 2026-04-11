@@ -155,10 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
     refreshAdminLists();
 
     const todayField = document.getElementById("announcementDate");
-    if (todayField) {
-        todayField.value = window.JCSContentStore.formatDisplayDate(new Date());
-    }
-
     const signupForm = document.getElementById("signupForm");
     const loginForm = document.getElementById("loginForm");
     const eventForm = document.getElementById("eventAdminForm");
