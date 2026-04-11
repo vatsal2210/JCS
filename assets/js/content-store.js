@@ -197,6 +197,10 @@ window.JCSContentStore = (function () {
         return readJson(KEYS.adminSession, null);
     }
 
+    function setCurrentUser(user) {
+        writeJson(KEYS.adminSession, user || null);
+    }
+
     function logoutUser() {
         localStorage.removeItem(KEYS.adminSession);
     }
@@ -236,6 +240,7 @@ window.JCSContentStore = (function () {
         deleteUser,
         signupUser,
         loginUser,
+        setCurrentUser,
         getCurrentUser,
         logoutUser,
         getSiteSettings,
