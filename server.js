@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
@@ -6,6 +8,7 @@ const crypto = require("crypto");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || "0.0.0.0";
 const DATA_DIR = path.join(__dirname, "server-data");
 const ADMINS_FILE = path.join(DATA_DIR, "admins.json");
 
@@ -68,6 +71,21 @@ async function ensureAdminsFile() {
     ];
 
     await fsp.writeFile(ADMINS_FILE, JSON.stringify(seedAdmins, null, 2));
+}
+
+function validateRequiredConfig() {
+    const missing = [];
+
+    if (!process.env.SUPERADMIN_EMAIL) {
+        missing.push("SUPERADMIN_EMAIL");
+    }
+    if (!process.env.SUPERADMIN_PASSWORD) {
+        missing.push("SUPERADMIN_PASSWORD");
+    }
+
+    if (missing.length) {
+        console.warn(`Missing env vars: ${missing.join(", ")}. Default fallback values may be used.`);
+    }
 }
 
 async function readAdmins() {
@@ -178,9 +196,39 @@ app.delete("/api/admin/users/:email", requireAdmin, requireSuperUser, async (req
     res.json({ ok: true });
 });
 
+app.get("/api/health", (req, res) => {
+    res.json({
+        ok: true,
+        service: "jcs-admin-site"
+    });
+});
+
 app.use(express.static(__dirname));
 
-app.listen(PORT, async () => {
+app.use((req, res) => {
+    res.status(404).json({ error: "Not found." });
+});
+
+async function startServer() {
+    validateRequiredConfig();
     await ensureAdminsFile();
-    console.log(`JCS site running on http://localhost:${PORT}`);
+
+    const server = app.listen(PORT, HOST, () => {
+        console.log(`JCS site running on http://${HOST}:${PORT}`);
+    });
+
+    server.on("error", (error) => {
+        if (error.code === "EADDRINUSE") {
+            console.error(`Port ${PORT} is already in use. Stop the existing process or change PORT in your environment.`);
+            process.exit(1);
+        }
+
+        console.error("Server failed to start:", error);
+        process.exit(1);
+    });
+}
+
+startServer().catch((error) => {
+    console.error("Startup failed:", error);
+    process.exit(1);
 });
