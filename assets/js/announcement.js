@@ -1,4 +1,4 @@
-const announcements = [
+const baseAnnouncements = [
     {
         id: "Health-&-Wellness-Series-part-2",
         title: "Health & Wellness Series Part 2: Oral Health Awareness and Resources",
@@ -48,7 +48,7 @@ const announcements = [
         eventDate: "June 22, 2025",
         file: "./assets/announcements_images/May 22, 2025 - Picnic_Event_Website_Temp.png",
     },
-    ,{
+    {
         id: "career-guidance-mentorship",
         title: "Career Guidance & Mentorship",
         date: "April 05, 2025",
@@ -91,6 +91,13 @@ const announcements = [
         file:"./assets/announcements_images/Sep 24, 2019 - Meet and Greet New immigrants and students event.pdf",
     },
 ];
+
+let announcements = [];
+
+function initializeAnnouncementsData() {
+    const storedAnnouncements = window.JCSContentStore?.getStoredAnnouncements?.() || [];
+    announcements = storedAnnouncements.concat(baseAnnouncements);
+}
 
 function parseAnnouncementDate(value) {
     if (!value) return null;
@@ -324,6 +331,7 @@ function openAnnouncementModal(filePath, title) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    initializeAnnouncementsData();
     renderHomeTopAlert();
     renderNextEventNotification();
     renderAnnouncementTable(); // new table list
