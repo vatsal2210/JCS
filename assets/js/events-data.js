@@ -1,6 +1,24 @@
 window.JCS_EVENTS_DATA = {
   "events": [
     {
+      "id": "workshop-for-grade-5-8-students",
+      "title": "Workshop for Grade 5-8 students: A journey into the world of medical science",
+      "shortDescription": "“A Journey into the World of Medical Science”, workshop was an inspiring and high-energy virtual collaboration between JCS Canada and Inspirely Education, bringing together young minds for an engaging learning experience.",
+      "images": [
+        {
+          "src": "assets/events_images/workshop_for_grade_5_8_students/image1.jpeg",
+          "alt": "Health Series Part 2 Event"
+        },
+        {
+          "src": "assets/events_images/workshop_for_grade_5_8_students/image2.jpeg",
+          "alt": "Health Series Part 2 Event"
+        }
+      ],
+      "detailPage": "events/event-detail.html?id=health-&-wellness-series-part-2",
+      "fullDescription": [
+        "“A Journey into the World of Medical Science”, workshop was an inspiring and high-energy virtual collaboration between JCS Canada and Inspirely Education, bringing together young minds for an engaging learning experience. Designed for Grade 5–8 students, the session was dynamic, interactive, and thoughtfully curated to spark curiosity about the fascinating world of medicine. Through engaging discussions and visual learning, students remained actively involved throughout the session. A special highlight was the guest session by an orthodontist, who connected wonderfully with the students—sharing real-life insights, practical knowledge about dental health, and inspiring many to imagine future careers in healthcare. The excitement peaked with a fun and competitive Kahoot quiz, where students enthusiastically tested their knowledge. The energy was fantastic, and we proudly celebrate the top 6 winners who were awarded prizes for their outstanding performance. This collaboration truly showcased the power of community partnerships in creating meaningful, inspiring, and joyful virtual learning opportunities for children. A big thank you to everyone who made this session a grand success!"
+      ]
+    },{
       "id": "fire-safety-awareness",
       "title": "Fire Safety Awareness Session",
       "shortDescription": "JCS Canada team hosted an informative Fire Safety Awareness Session led by Esther Khew, Public Education Officer, Fire Prevention and Risk Reduction, Mississauga Fire and Emergency Services.",
