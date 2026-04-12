@@ -6,11 +6,11 @@ window.JCS_EVENTS_DATA = {
       "shortDescription": "“A Journey into the World of Medical Science”, workshop was an inspiring and high-energy virtual collaboration between JCS Canada and Inspirely Education, bringing together young minds for an engaging learning experience.",
       "images": [
         {
-          "src": "assets/events_images/workshop_for_grade_5_8_students/image1.jpeg",
+          "src": "assets/events_images/iamge1.jpeg",
           "alt": "Health Series Part 2 Event"
         },
         {
-          "src": "assets/events_images/workshop_for_grade_5_8_students/image2.jpeg",
+          "src": "assets/events_images/image2.jpeg",
           "alt": "Health Series Part 2 Event"
         }
       ],
