@@ -4,7 +4,7 @@ const announcements = [
         title:"One Stage, Many Paths - A cross….move",
         date:"May 04, 2026",
         eventDate:"May 23, 2026",
-        file:"assets/announcements_images/One_Stage_Many_Paths.jpeg",
+        file:"assets/announcements_images/one-stage-many-paths.jpeg",
     },{
         id: "Health-&-Wellness-Series-part-2",
         title: "Health & Wellness Series Part 2: Oral Health Awareness and Resources",
