@@ -1,7 +1,7 @@
 const announcements = [
     {
         id:"one-stage-many-paths",
-        title:"One Stage, Many Paths - A cross….move",
+        title:"One Stage, Many Paths - A cross-disciplinary conversation on careers, growth, and navigating your next move.",
         date:"May 04, 2026",
         eventDate:"May 23, 2026",
         file:"assets/announcements_images/one-stage-many-paths.jpeg",
