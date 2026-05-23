@@ -37,17 +37,22 @@ document.addEventListener("DOMContentLoaded", function () {
   function setActiveNavItem() {
     // Get current scroll position
     const scrollPosition = window.scrollY;
-    
+
+    // Offset matches the fixed navbar (+ top alert banner if visible).
+    // Read from body padding-top so it stays in sync with the actual layout.
+    const bodyPadding = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+    const offset = bodyPadding + 20;
+
     // Find the appropriate section
     let current = "";
-    
+
     // Loop through sections to determine which one is currently in view
     sections.forEach((section) => {
       // Get section dimensions
-      const sectionTop = section.offsetTop - 100; // Offset for navbar
+      const sectionTop = section.offsetTop - offset;
       const sectionHeight = section.clientHeight;
       const sectionBottom = sectionTop + sectionHeight;
-      
+
       // Check if we're in this section
       if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
         current = section.getAttribute("id");
