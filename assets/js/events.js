@@ -163,7 +163,8 @@ function renderEventDetail(eventId) {
         <div class="mt-4 mb-3">
             <div class="card-body event-details-content mt-2">
                 <h1 class="card-title event-title mb-3 text-center">${event.title}</h1>
-                <div id="eventDetailCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+                <div id="eventDetailCarousel" class="carousel slide jcs-carousel mb-4"
+                    data-bs-ride="carousel" data-bs-interval="6000" data-bs-pause="hover">
                     <div class="carousel-indicators">
                         ${indicators}
                     </div>

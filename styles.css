@@ -1856,6 +1856,48 @@ footer a:hover {
     padding: 0 3.5rem;
 }
 
+/* Shared JCS carousel styling — used by Success Stories + event detail */
+.jcs-carousel .carousel-control-prev,
+.jcs-carousel .carousel-control-next {
+    width: 3rem;
+    opacity: 0.85;
+}
+
+.jcs-carousel .carousel-control-prev-icon,
+.jcs-carousel .carousel-control-next-icon {
+    background-color: #0056b3;
+    border-radius: 50%;
+    padding: 1.1rem;
+    background-size: 50% 50%;
+}
+
+.jcs-carousel .carousel-control-prev:hover,
+.jcs-carousel .carousel-control-next:hover {
+    opacity: 1;
+}
+
+.jcs-carousel .carousel-indicators {
+    position: relative;
+    margin: 1rem 0 1.25rem;
+    bottom: auto;
+}
+
+.jcs-carousel .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #0056b3;
+    opacity: 0.35;
+    border: none;
+    margin: 0 5px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.jcs-carousel .carousel-indicators [data-bs-target].active {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
 .success-story-slide {
     padding: 0.5rem;
 }
@@ -1899,47 +1941,6 @@ footer a:hover {
     color: #1f3b73;
     margin-bottom: 0;
     text-align: right;
-}
-
-.success-stories-carousel .carousel-control-prev,
-.success-stories-carousel .carousel-control-next {
-    width: 3rem;
-    opacity: 0.85;
-}
-
-.success-stories-carousel .carousel-control-prev-icon,
-.success-stories-carousel .carousel-control-next-icon {
-    background-color: #0056b3;
-    border-radius: 50%;
-    padding: 1.1rem;
-    background-size: 50% 50%;
-}
-
-.success-stories-carousel .carousel-control-prev:hover,
-.success-stories-carousel .carousel-control-next:hover {
-    opacity: 1;
-}
-
-.success-stories-carousel .carousel-indicators {
-    position: relative;
-    margin: 1rem 0 1.25rem;
-    bottom: auto;
-}
-
-.success-stories-carousel .carousel-indicators [data-bs-target] {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #0056b3;
-    opacity: 0.35;
-    border: none;
-    margin: 0 5px;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.success-stories-carousel .carousel-indicators [data-bs-target].active {
-    opacity: 1;
-    transform: scale(1.15);
 }
 
 .success-stories-carousel.single-story .carousel-control-prev,
