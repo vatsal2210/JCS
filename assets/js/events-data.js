@@ -1,6 +1,14 @@
 window.JCS_EVENTS_DATA = {
   "events": [
     {
+      "id":"oral-health-awareness",
+      "title":"Oral Health Awareness & Resources",
+      "shortDescription":"This session focused on practical ways to maintain strong oral health through simple daily habits, preventive treatments, and informed choices. Key takeaways included brushing twice daily, rinsing after meals, and understanding how hidden sugars in foods like white rice and pasta can contribute to cavities if not managed properly.",
+      "images":[{"src":"assets/events_images/oral-health-awareness/image1.png","alt":"Oral Health Awareness & Resources"},{"src":"assets/events_images/oral-health-awareness/image2.png","alt":"Oral Health Awareness & Resources"}],
+      "detailPage":"events/event-detail.html?id=oral-health-awareness",
+      "fullDescription":["This session focused on practical ways to maintain strong oral health through simple daily habits, preventive treatments, and informed choices. Key takeaways included brushing twice daily, rinsing after meals, and understanding how hidden sugars in foods like white rice and pasta can contribute to cavities if not managed properly.Participants learned about effective preventive treatments such as fluoride applications and silver diamine fluoride, along with natural approaches like Triphala for gum care and the benefits of foods such as cheese, nuts, fruits, and fennel seeds in supporting oral hygiene. The session also guided attendees on accessing affordable dental care in Ontario through the Royal College of Dental Surgeons of Ontario, including how to find licensed dentists and low-cost clinics. A clear overview of the Canadian Dental Care Plan was provided, covering eligibility requirements, coverage levels, and how billing works. The discussion also highlighted the importance of preventive healthcare in improving long-term outcomes and reducing pressure on the healthcare system, encouraging a proactive approach to overall health and wellness. We are very thankful to Dr. Kalyani for generously sharing her time, experience and practical guidance with our community."]
+    },
+    {
       "id": "workshop-for-grade-5-8-students",
       "title": "Workshop for Grade 5-8 students: A journey into the world of medical science",
       "shortDescription": "“A Journey into the World of Medical Science”, workshop was an inspiring and high-energy virtual collaboration between JCS Canada and Inspirely Education, bringing together young minds for an engaging learning experience.",
