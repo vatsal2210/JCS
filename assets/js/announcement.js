@@ -1,5 +1,11 @@
 const announcements = [
     {
+        id: "summer-picnic-2026",
+        title: "JCS Canada Summer Picnic - Bringing our Community Together",
+        date: "July 14, 2026",
+        eventDate: "July 26, 2026",
+        file: "assets/announcements_images/SummerPicnic_2026.jpeg",
+    },{
         id:"one-stage-many-paths",
         title:"One Stage, Many Paths - A cross-disciplinary conversation on careers, growth, and navigating your next move.",
         date:"May 04, 2026",
