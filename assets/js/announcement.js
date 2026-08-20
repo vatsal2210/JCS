@@ -1,5 +1,11 @@
 const announcements = [
     {
+        id: "small-business-owner-event",
+        title: "Small Business Owner Event",
+        date: "July 14, 2026",
+        eventDate: "July26, 2026",
+        file: "assets/announcements_images/smallbusinessowner.jpeg",
+    },{
         id: "summer-picnic-2026",
         title: "JCS Canada Summer Picnic - Bringing our Community Together",
         date: "July 14, 2026",
