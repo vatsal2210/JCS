@@ -1383,6 +1383,73 @@ footer a:hover {
     flex-shrink: 0;
 }
 
+/* Chip showing how many images an announcement carries */
+.announcement-media-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: auto;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    background: #eaf1fb;
+    color: #0f4c9a;
+    font-size: 0.75rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.announcement-media-count i {
+    font-size: 0.78rem;
+    color: #0f4c9a;
+}
+
+/* Announcement modal gallery - mirrors the event detail carousel */
+.announcement-modal-body {
+    padding: 1rem 1.25rem 1.25rem;
+}
+
+.announcement-modal-media {
+    width: 100%;
+}
+
+.announcement-carousel {
+    margin-bottom: 0;
+}
+
+.announcement-carousel .carousel-item {
+    text-align: center;
+}
+
+.announcement-carousel-image {
+    max-width: 100%;
+    max-height: 72vh;
+    width: auto;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.announcement-carousel-pdf {
+    width: 100%;
+    height: 72vh;
+    border: 0;
+    border-radius: 0.5rem;
+}
+
+@media (max-width: 767.98px) {
+    .announcement-carousel-image {
+        max-height: 62vh;
+    }
+
+    .announcement-carousel-pdf {
+        height: 62vh;
+    }
+
+    .announcement-carousel .carousel-control-prev,
+    .announcement-carousel .carousel-control-next {
+        width: 2.2rem;
+    }
+}
+
 .site-top-alert {
     position: fixed;
     top: 0;
