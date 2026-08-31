@@ -1,3 +1,18 @@
+// Each announcement supports either a single poster (`file`) or several
+// images/PDFs (`files`), which open in the same carousel used by the events
+// section. Example:
+//
+//   {
+//       id: "example-event",
+//       title: "Example Event",
+//       date: "August 01, 2026",
+//       eventDate: "September 01, 2026",
+//       files: [
+//           { src: "assets/announcements_images/example/image1.jpeg", alt: "Example Event" },
+//           { src: "assets/announcements_images/example/image2.jpeg", alt: "Example Event" }
+//       ],
+//   }
+//
 const announcements = [
     {
         id: "small-business-owner-event",
@@ -10,7 +25,10 @@ const announcements = [
         title: "JCS Canada Summer Picnic - Bringing our Community Together",
         date: "July 14, 2026",
         eventDate: "July 26, 2026",
-        file: "assets/announcements_images/SummerPicnic_2026.jpeg",
+        files: [
+            { src: "assets/announcements_images/SummerPicnic_2026.jpeg", alt: "JCS Canada Summer Picnic" },
+            { src: "assets/announcements_images/smallbusinessowner.jpeg", alt: "JCS Canada Summer Picnic" }
+        ],
     },{
         id:"one-stage-many-paths",
         title:"One Stage, Many Paths - A cross-disciplinary conversation on careers, growth, and navigating your next move.",
@@ -110,6 +128,48 @@ const announcements = [
     },
 ];
 
+// Announcements can carry either a single `file` (legacy) or a `files` array
+// with multiple images/PDFs. Both are normalized to the same media list so the
+// modal can show the exact carousel used on the event pages.
+function normalizeAnnouncementPath(src) {
+    return String(src || "").trim().replace(/^\.\//, "");
+}
+
+function getAnnouncementMedia(announcement) {
+    if (!announcement) return [];
+
+    const rawList = Array.isArray(announcement.files) && announcement.files.length
+        ? announcement.files
+        : (announcement.file ? [announcement.file] : []);
+
+    return rawList
+        .map((item) => {
+            const src = normalizeAnnouncementPath(typeof item === "string" ? item : (item && item.src));
+            if (!src) return null;
+            const alt = (item && typeof item === "object" && item.alt) || announcement.title || "Announcement";
+            return { src, alt };
+        })
+        .filter(Boolean);
+}
+
+function findAnnouncementById(id) {
+    if (!id) return null;
+    return announcements.find((announcement) => announcement && announcement.id === id) || null;
+}
+
+function escapeAnnouncementHtml(value) {
+    return String(value == null ? "" : value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function isPdfPath(src) {
+    return String(src || "").toLowerCase().split("?")[0].endsWith(".pdf");
+}
+
 function parseAnnouncementDate(value) {
     if (!value) return null;
 
@@ -170,14 +230,24 @@ function renderNextEventNotification() {
                 <strong>${announcement.title}</strong>
                 <span>Event Date: ${announcement.eventDate}</span>
             </div>
-            ${announcement.file ? `<button type="button" class="announcement-notice-btn" onclick="openAnnouncementModal('${announcement.file}', '${announcement.title.replace(/'/g, "\\'")}')">View</button>` : ""}
+            ${getAnnouncementMedia(announcement).length ? `<button type="button" class="announcement-notice-btn" onclick="openAnnouncementById('${announcement.id}')">View</button>` : ""}
         </div>
     `;
 }
 
 function ensureAnnouncementModal() {
     let modalEl = document.getElementById("announcementModal");
-    if (modalEl) return modalEl;
+    if (modalEl) {
+        // Pages may still ship the older single-image/PDF modal body; upgrade it
+        // in place so every announcement renders through the carousel.
+        const existingBody = modalEl.querySelector(".modal-body");
+        if (existingBody && !existingBody.querySelector("#announcementModalMedia")) {
+            existingBody.classList.add("announcement-modal-body");
+            existingBody.removeAttribute("style");
+            existingBody.innerHTML = '<div id="announcementModalMedia" class="announcement-modal-media"></div>';
+        }
+        return modalEl;
+    }
 
     modalEl = document.createElement("div");
     modalEl.className = "modal fade";
@@ -191,9 +261,8 @@ function ensureAnnouncementModal() {
                     <h5 class="modal-title" id="announcementModalTitle"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body text-center" style="height: 80vh;">
-                    <img id="modal-image" class="img-fluid d-none" style="max-height: 100%;">
-                    <iframe id="modal-pdf" class="w-100 h-100 d-none" frameborder="0"></iframe>
+                <div class="modal-body announcement-modal-body text-center">
+                    <div id="announcementModalMedia" class="announcement-modal-media"></div>
                 </div>
             </div>
         </div>
@@ -248,21 +317,20 @@ function renderHomeTopAlert() {
         <i class="bi bi-stars" aria-hidden="true"></i>
         <span><strong>New Update:</strong> ${nextEvent.announcement.title} (${nextEvent.announcement.eventDate})</span>
     `;
-    const filePath = nextEvent.announcement.file ? String(nextEvent.announcement.file).replace(/^\.\//, "") : "";
-    link.href = filePath ? "#" : "announcements.html";
+    const hasMedia = getAnnouncementMedia(nextEvent.announcement).length > 0;
+    link.href = hasMedia ? "#" : "announcements.html";
     link.removeAttribute("target");
     link.removeAttribute("rel");
-    link.dataset.file = filePath;
+    link.dataset.announcementId = hasMedia ? (nextEvent.announcement.id || "") : "";
     link.dataset.title = nextEvent.announcement.title || "";
     link.dataset.fallback = "announcements.html";
 
     if (!link.dataset.bound) {
         link.addEventListener("click", (event) => {
-            const currentFile = link.dataset.file || "";
-            const currentTitle = link.dataset.title || "";
-            if (currentFile) {
+            const currentId = link.dataset.announcementId || "";
+            if (currentId) {
                 event.preventDefault();
-                openAnnouncementModal(currentFile, currentTitle);
+                openAnnouncementById(currentId);
             }
         });
         link.dataset.bound = "true";
@@ -286,10 +354,13 @@ function renderAnnouncementTable() {
 
     tableBody.innerHTML = announcements
         .map(a => {
-            const link = a.file ? '#' : `?id=${a.id}`;
-
-            const click = a.file
-                ? `onclick="openAnnouncementModal('${a.file}', '${a.title.replace(/'/g, "\\'")}')"`
+            const media = getAnnouncementMedia(a);
+            const link = media.length ? '#' : `?id=${a.id}`;
+            const click = media.length ? `onclick="openAnnouncementById('${a.id}')"` : '';
+            const galleryChip = media.length > 1
+                ? `<span class="announcement-media-count" title="${media.length} images">
+                       <i class="bi bi-images" aria-hidden="true"></i> ${media.length}
+                   </span>`
                 : '';
 
             return `
@@ -304,6 +375,7 @@ function renderAnnouncementTable() {
                 <a href="${link}" ${click} 
                    class="text-decoration-none announcement-title">
                    <span>${a.title}</span>
+                   ${galleryChip}
                    <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
                 </a>
             </td>
@@ -313,32 +385,111 @@ function renderAnnouncementTable() {
         .join('');
 }
 
-function openAnnouncementModal(filePath, title) {
+// Builds the same Bootstrap carousel markup used on the event detail pages so
+// announcements with several images look and behave identically.
+function buildAnnouncementCarousel(mediaList) {
+    const carouselId = "announcementDetailCarousel";
+    const hasMultiple = mediaList.length > 1;
+
+    const indicators = mediaList.map((media, index) => `
+        <button type="button" data-bs-target="#${carouselId}" data-bs-slide-to="${index}"
+            class="${index === 0 ? "active" : ""}"
+            aria-current="${index === 0 ? "true" : "false"}"
+            aria-label="${escapeAnnouncementHtml(media.alt)}"></button>
+    `).join("");
+
+    const items = mediaList.map((media, index) => {
+        const src = escapeAnnouncementHtml(media.src);
+        const alt = escapeAnnouncementHtml(media.alt);
+        const mediaMarkup = isPdfPath(media.src)
+            ? `<iframe src="${src}" class="announcement-carousel-pdf" title="${alt}" frameborder="0"></iframe>`
+            : `<img src="${src}" class="d-block rounded announcement-carousel-image" alt="${alt}" />`;
+
+        return `<div class="carousel-item ${index === 0 ? "active" : ""}">${mediaMarkup}</div>`;
+    }).join("");
+
+    return `
+        <div id="${carouselId}" class="carousel slide jcs-carousel announcement-carousel"
+            data-bs-ride="${hasMultiple ? "carousel" : "false"}" data-bs-interval="6000" data-bs-pause="hover">
+            ${hasMultiple ? `<div class="carousel-indicators">${indicators}</div>` : ""}
+            <div class="carousel-inner">
+                ${items}
+            </div>
+            ${hasMultiple ? `
+            <button class="carousel-control-prev" type="button"
+                data-bs-target="#${carouselId}" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button"
+                data-bs-target="#${carouselId}" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            ` : ""}
+        </div>
+    `;
+}
+
+function showAnnouncementModal(mediaList, title) {
+    if (!mediaList || !mediaList.length) return;
+
     ensureAnnouncementModal();
 
-    const isPDF = filePath.toLowerCase().endsWith('.pdf');
-    const img = document.getElementById("modal-image");
-    const pdf = document.getElementById("modal-pdf");
-
-    // 🔥 Set Modal Title
-    if (title) {
-        document.getElementById("announcementModalTitle").textContent = title;
+    const titleEl = document.getElementById("announcementModalTitle");
+    if (titleEl) {
+        titleEl.textContent = title || "";
     }
 
-    // Reset
-    img.classList.add("d-none");
-    pdf.classList.add("d-none");
+    const mediaContainer = document.getElementById("announcementModalMedia");
+    if (mediaContainer) {
+        mediaContainer.innerHTML = buildAnnouncementCarousel(mediaList);
 
-    if (isPDF) {
-        pdf.src = filePath;
-        pdf.classList.remove("d-none");
-    } else {
-        img.src = filePath;
-        img.classList.remove("d-none");
+        // Markup injected after page load is not picked up by Bootstrap's auto
+        // init, so start the slideshow manually when there are several images.
+        const carouselEl = mediaContainer.querySelector(".announcement-carousel");
+        if (carouselEl && mediaList.length > 1 && window.bootstrap && bootstrap.Carousel) {
+            bootstrap.Carousel.getOrCreateInstance(carouselEl, {
+                interval: 6000,
+                ride: "carousel",
+                pause: "hover"
+            });
+        }
     }
 
-    const modal = new bootstrap.Modal(document.getElementById("announcementModal"));
+    const modalEl = document.getElementById("announcementModal");
+    if (!modalEl.dataset.cleanupBound) {
+        modalEl.addEventListener("hidden.bs.modal", () => {
+            const openCarousel = modalEl.querySelector(".announcement-carousel");
+            if (openCarousel && window.bootstrap && bootstrap.Carousel) {
+                const instance = bootstrap.Carousel.getInstance(openCarousel);
+                if (instance) instance.dispose();
+            }
+            const container = document.getElementById("announcementModalMedia");
+            if (container) container.innerHTML = "";
+        });
+        modalEl.dataset.cleanupBound = "true";
+    }
+
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
     modal.show();
+}
+
+// Preferred entry point: everything about the announcement (including all of
+// its images) is looked up from the announcements list by id.
+function openAnnouncementById(announcementId) {
+    const announcement = findAnnouncementById(announcementId);
+    if (!announcement) return;
+
+    showAnnouncementModal(getAnnouncementMedia(announcement), announcement.title);
+}
+
+// Kept for backward compatibility with any existing single-file callers.
+function openAnnouncementModal(filePath, title) {
+    const src = normalizeAnnouncementPath(filePath);
+    if (!src) return;
+
+    showAnnouncementModal([{ src, alt: title || "Announcement" }], title);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
