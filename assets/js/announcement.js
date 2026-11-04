@@ -15,6 +15,13 @@
 //
 const announcements = [
     {
+        id: "jsc-canada-marketplace",
+        title: "JCS Canada Marketplace",
+        date: "November 06, 2026",
+        // eventDate: "July 26, 2026",
+        files: "assets/announcements_images/JCS_marketplace.jpeg", alt: "JCS Canada Marketplace",
+    },
+    {
         id: "summer-picnic-2026",
         title: "JCS Canada Summer Picnic - Bringing our Community Together",
         date: "July 14, 2026",

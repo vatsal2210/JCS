@@ -25,10 +25,16 @@ window.JCS_VOLUNTEERS_DATA = {
       "image": "assets/community_images/Harish%20Jain.jpeg"
     },
     {
+      "name": "Sarthak Shah",
+      "title": "Volunteer",
+      "linkedin": "https://www.linkedin.com/in/sarthakshah94/",
+      "image": "assets/community_images/Sarthak%20Shah.jpeg"
+    },
+    {
       "name": "Palak Desai",
       "title": "Volunteer",
       "linkedin": "https://www.linkedin.com/in/palakdesai7/",
-      "image": "assets/community_images/Palak%20Desai.jpg"
+      "image": "assets/community_images/Palak%20Desai.jpeg"
     },
     {
       "name": "Smruti Shah",
