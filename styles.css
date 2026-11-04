@@ -368,7 +368,7 @@ p {
     z-index: -1;
 }
 
-#services .card, #collaborations .card {
+#collaborations .card {
     margin-bottom: 1.8rem;
 }
 
